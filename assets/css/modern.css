@@ -2872,22 +2872,22 @@ tr.group:hover {
 }
 
 .gritter-top {
-	background: none!important;
+    background: none!important;
 }
 
 .gritter-bottom {
-	background: none!important;
+    background: none!important;
 }
 
 .gritter-close {
-	top: 15px;
+    top: 15px;
     left: auto;
-	right: 5px;
+    right: 5px;
 }
 
 .gritter-image {
-	width: 50px;
-	height: 50px;
+    width: 50px;
+    height: 50px;
     border-radius: 100%;
 }
 
@@ -2899,9 +2899,9 @@ tr.group:hover {
 
 
 .fc button {
-	height: auto;
+    height: auto;
     padding: 6px 12px;
-	font-size: 13px;
+    font-size: 13px;
 }
 
 
@@ -2909,28 +2909,28 @@ tr.group:hover {
     margin: 0; 
     padding: 0; 
 }
-	
+    
 .fc-state-default {
-	border: 1px solid;
+    border: 1px solid;
 }
 
 .fc-state-default.fc-corner-left {
-	border-top-left-radius: 2px;
-	border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
 }
 
 .fc-state-default.fc-corner-right {
-	border-top-right-radius: 2px;
-	border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 
 .fc-state-default {
-	background-color: #fff;
-	background-image: none;
-	border-color: #e5e5e5;
-	color: #333;
-	text-shadow: 0;
-	box-shadow: 0;
+    background-color: #fff;
+    background-image: none;
+    border-color: #e5e5e5;
+    color: #333;
+    text-shadow: 0;
+    box-shadow: 0;
     outline: 0!important;
 }
 
@@ -2938,15 +2938,15 @@ tr.group:hover {
 .fc-state-down,
 .fc-state-active,
 .fc-state-disabled {
-	color: #333333;
-	background-color: #e6e6e6;
+    color: #333333;
+    background-color: #e6e6e6;
 }
 
 .fc-state-hover {
-	color: #333333;
-	text-decoration: none;
-	background-position: 0 -15px;
-	-webkit-transition: none;
+    color: #333333;
+    text-decoration: none;
+    background-position: 0 -15px;
+    -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
     transition: none;
@@ -2956,19 +2956,19 @@ tr.group:hover {
 .fc-state-active {
     background-color: #f1f1f1;
     border: 1px solid #e5e5e5;
-	box-shadow: 0!important;
+    box-shadow: 0!important;
 }
 
 .fc-state-disabled {
-	cursor: default;
-	background-image: none;
-	opacity: 0.65;
-	filter: alpha(opacity=65);
-	box-shadow: none;
+    cursor: default;
+    background-image: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    box-shadow: none;
 }
 
 .fc-day-grid-event {
-	padding: 5px;
+    padding: 5px;
     background: #22BAA0;
     border: 0;
 }
@@ -3711,7 +3711,7 @@ tr.group:hover {
 
 .horizontal-bar .accordion-menu {
     text-align: center;
-	font-size: 0;
+    font-size: 0;
     width: 100%!important;
     overflow: visible!important;
 }
@@ -3796,15 +3796,15 @@ body:not(.small-sidebar) .horizontal-bar .menu.accordion-menu > li > a > .menu-i
 }
 
 .small-sidebar.page-sidebar-fixed.page-header-fixed .page-inner {
-	padding: 60px 0 50px 65px;
+    padding: 60px 0 50px 65px;
 }
 
 .small-sidebar.page-sidebar-fixed:not(.page-header-fixed) .page-inner {
-	padding: 0 0 50px 65px;
+    padding: 0 0 50px 65px;
 }
 
 .small-sidebar.page-header-fixed.page-horizontal-bar:not(.page-sidebar-fixed) .page-inner {
-	padding: 0 0 50px 0;
+    padding: 0 0 50px 0;
 }
 
 .page-horizontal-bar:not(.page-sidebar-fixed) .checkout {
@@ -3877,7 +3877,7 @@ body:not(.small-sidebar) .horizontal-bar .menu.accordion-menu > li > a > .menu-i
     padding: 0px;
     margin: 0px;
     width: 160px;
-	color: white;
+    color: white;
     position: relative;
     display: block;
 }
@@ -3907,12 +3907,12 @@ body:not(.page-horizontal-bar):not(.small-sidebar) .menu.accordion-menu a {
 
 .menu.accordion-menu a span.menu-icon {
     display: inline-block;
-	font-size: 20px;
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
 .menu.accordion-menu li > a > .arrow:before {
-	width: 10px;
+    width: 10px;
     float: right;
     display: block;
     margin-top: -20px;
@@ -3936,11 +3936,11 @@ body:not(.page-horizontal-bar):not(.small-sidebar) .menu.accordion-menu a {
 }
 
 .menu.accordion-menu li {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 .menu.accordion-menu li a .badge {
-	float: right;
+    float: right;
     margin-top: 1px;
     margin-right: 0px;
     margin-left: 0px;
@@ -3996,7 +3996,7 @@ body:not(.page-horizontal-bar):not(.small-sidebar) .menu.accordion-menu a {
 
 .compact-menu .menu.accordion-menu a span.menu-icon {
     display: inline-block!important;
-	font-size: 14px!important;
+    font-size: 14px!important;
     margin-bottom: 0!important;
     margin-right: 10px!important;
 }
@@ -4204,7 +4204,7 @@ body:not(.page-horizontal-bar):not(.small-sidebar) .menu.accordion-menu a {
 }
 
 .small-sidebar:not(.page-sidebar-fixed) .accordion-menu li a .arrow:before {
-	width: 10px;
+    width: 10px;
     float: right;
     margin-left: 15px;
     margin-top: -2px;
@@ -4275,21 +4275,21 @@ body:not(.page-horizontal-bar):not(.small-sidebar) .menu.accordion-menu a {
 /* Page Inner */
 
 .page-inner {
-	padding: 0 0 50px 0;
+    padding: 0 0 50px 0;
     background: #F1F4F9;
     position: relative;
 }
 
 .page-header-fixed:not(.page-sidebar-fixed):not(.page-horizontal-bar) .page-inner {
-	padding: 60px 0 50px 0;
+    padding: 60px 0 50px 0;
 }
 
 .page-sidebar-fixed.page-header-fixed .page-inner {
-	padding: 60px 0 50px 160px;
+    padding: 60px 0 50px 160px;
 }
 
 .page-horizontal-bar.page-sidebar-fixed.page-header-fixed .page-inner {
-	padding: 134px 0 50px 0;
+    padding: 134px 0 50px 0;
 }
 
 .page-horizontal-bar.page-sidebar-fixed.page-header-fixed.compact-menu .page-inner {
@@ -4297,19 +4297,19 @@ body:not(.page-horizontal-bar):not(.small-sidebar) .menu.accordion-menu a {
 }
 
 .page-sidebar-fixed:not(.page-header-fixed) .page-inner {
-	padding: 0px 0 50px 160px;
+    padding: 0px 0 50px 160px;
 }
 
 .small-sidebar.page-sidebar-fixed.page-header-fixed .page-inner {
-	padding: 60px 0 50px 65px;
+    padding: 60px 0 50px 65px;
 }
 
 .small-sidebar.page-sidebar-fixed:not(.page-header-fixed) .page-inner {
-	padding: 0 0 50px 65px;
+    padding: 0 0 50px 65px;
 }
 
 .small-sidebar.page-header-fixed:not(.page-sidebar-fixed) .page-inner {
-	padding: 60px 0 50px 0;
+    padding: 60px 0 50px 0;
 }
 
 
@@ -5065,7 +5065,7 @@ body:not(.page-horizontal-bar):not(.small-sidebar) .menu.accordion-menu a {
 }
 
 #gallery .mix {
-	display: none;
+    display: none;
 }
 
 

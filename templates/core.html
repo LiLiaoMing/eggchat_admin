@@ -1,0 +1,185 @@
+<div id="main-wrapper" ng-init="init()">
+    <div class="page-inner">
+        <div class="page-title">
+            <h3>Core Management</h3>
+            <div class="page-breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="#">Core Management</a></li>
+                </ol>
+            </div>
+        </div>
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-md-6 core-info-panel">
+                    <h3>Stats</h3>
+
+                    <!--    Core Profile   -->
+                    
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-info">Core Profile</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Members</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Groups</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+
+                    <!--    Enterprise Profile   -->
+                    
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-info">Enterprise Profile</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Members</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Groups</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+
+                    <!--    TOTALS   -->
+                    
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-info">TOTALS</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Clients</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Members</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Groups</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+
+                    <!--    Performance   -->
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-info">Core Profile</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Min Messages / Second</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Max Messages / Second</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="text-primary left-padding-30">Average Messages / Second</p>
+                        </div>
+                        <div class="col-md-2">
+                            :'n'
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-white">
+                        <div class="panel-heading clearfix">
+                            <h4 class="panel-title">Settings</h4>
+                        </div>
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-4 control-label">Reply Email</label>
+                                    <div class="col-sm-8">
+                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-4 control-label">Maximum Members per Group</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control m-b-sm">
+                                            <option ng-repeat="(key, value) in max_limit">{{value}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-4 control-label">Maximum Core Member Circulate Limit</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control m-b-sm">
+                                            <option ng-repeat="(key, value) in max_limit">{{value}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="button-panel">
+                    <a href="#/app/circulate" class="btn btn-success" role="button">Search & Circulate</a>
+                    <a href="#/app/core-manage" class="btn btn-success" role="button">User Management</a>
+                    <a href="#/app/core-backup" class="btn btn-success" role="button">&nbsp;&nbsp;&nbsp;Backup&nbsp;&nbsp;&nbsp;</a>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>    
+    

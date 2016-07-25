@@ -1,13 +1,13 @@
 var scpApp = angular.module('scpApp', [
 								'ngRoute',
                                 'ui.router',
-								'app.directives.infoBoxPanel',
-								'app.directives.lineChart',
-								'app.directives.barChart',
-                                'app.directives.flatChart',
-								'app.directives.projectList', 
-                                'ng-bootstrap-datepicker',
-                                'app.directives.ngConfirmClick'
+								// 'app.directives.infoBoxPanel',
+								// 'app.directives.lineChart',
+								// 'app.directives.barChart',
+        //                         'app.directives.flatChart',
+								// 'app.directives.projectList', 
+        //                         'ng-bootstrap-datepicker',
+        //                         'app.directives.ngConfirmClick'
 							])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -21,7 +21,7 @@ var scpApp = angular.module('scpApp', [
         }
     }
 
-    $urlRouterProvider.otherwise('/app/dashboard');
+    $urlRouterProvider.otherwise('/app/core');
 
   	$stateProvider
 
@@ -49,15 +49,25 @@ var scpApp = angular.module('scpApp', [
         }
     })
     
-    .state('main.dashboard', {
-        url: "/dashboard",
-        templateUrl: "templates/dashboard.html",
-        controller: "DashboardCtrl",
+    .state('main.core', {
+        url: "/core",
+        templateUrl: "templates/core.html",
+        controller: "CoreCtrl",
         resolve: {
             'result': userLoggedIn
         }
     })
 
+    .state('main.circulate', {
+        url: "/circulate",
+        templateUrl: "templates/circulate.html",
+        controller: "CirculateCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    /*
     .state('main.user', {
         url: "/user",
         templateUrl: "templates/user.html",
@@ -147,7 +157,7 @@ var scpApp = angular.module('scpApp', [
             'result': userLoggedIn
         }
     })
-  	
+  	*/
 });
 
 

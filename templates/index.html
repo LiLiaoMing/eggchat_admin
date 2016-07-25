@@ -11,14 +11,6 @@
     </nav>
     <button class="close-button" id="close-button">Close Menu</button>
 </div>
-<!-- <form class="search-form" action="#" method="GET">
-    <div class="input-group">
-        <input type="text" name="search" class="form-control search-input" placeholder="Search...">
-        <span class="input-group-btn">
-            <button class="btn btn-default close-search waves-effect waves-button waves-classic" type="button"><i class="fa fa-times"></i></button>
-        </span>
-    </div>
-</form> -->
 
 <main class="page-content content-wrap">
     <div class="navbar">
@@ -37,23 +29,6 @@
             <div class="topmenu-outer">
                 <div class="top-menu">
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- <li>    
-                            <a href="javascript:void(0);" class="waves-effect waves-button waves-classic show-search"><i class="fa fa-search"></i></a>
-                        </li> -->
-                        <!-- <li>
-                            <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
-                                <span class="user-name">Bruce<i class="fa fa-angle-down"></i></span>
-                                <img class="img-circle avatar" src="assets/images/avatar1.png" width="40" height="40" alt="">
-                            </a>
-                            <ul class="dropdown-menu dropdown-list" role="menu">
-                                <li role="presentation"><a href="profile.html"><i class="fa fa-user"></i>Profile</a></li>
-                                <li role="presentation"><a href="calendar.html"><i class="fa fa-calendar"></i>Calendar</a></li>
-                                <li role="presentation"><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox<span class="badge badge-success pull-right">4</span></a></li>
-                                <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a href="lock-screen.html"><i class="fa fa-lock"></i>Lock screen</a></li>
-                                <li role="presentation"><a href="login.html"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
-                            </ul>
-                        </li> -->
                         <li>
                             <a href="#/logout" class="log-out waves-effect waves-button waves-classic">
                                 <span><i class="fa fa-sign-out m-r-xs"></i>Log out</span>
@@ -73,93 +48,18 @@
                             <img src="assets/images/profile-menu-image.png" class="img-circle img-responsive" alt="">
                         </div>
                         <div class="sidebar-profile-details">
-                            <span>{{firstname}}<br><small>{{permission}}</small></span>
+                            <span>{{full_name}}<br><small>{{level}}</small></span>
                         </div>
                     </a>
                 </div>
             </div>
             <ul class="menu accordion-menu">
-                <li><a href="#/app/dashboard" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
-                <li ng-show="isAdmin"><a href="#/app/user" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>User Management</p></a></li>
-                <li><a href="#/app/table" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Tables Management</p></a>
-                <li><a href="#/app/initiative" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Initiatives</p></a>
-                <!-- <li class="droplink"><a href="#/app/chart" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-stats"></span><p>Charts</p><span class="arrow"></span></a>
-                    <ul class="sub-menu">
-                        <li><a href="#">Sparkline</a></li>
-                        <li><a href="#">Rickshaw</a></li>
-                        <li><a href="#">Morris</a></li>
-                        <li><a href="#">Flotchart</a></li>
-                        <li><a href="#">Chart.js</a></li>
-                    </ul>
-                </li> -->
+                <li><a href="#/app/dashboard" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Core Management</p></a></li>
+                <li ng-show="!isAdmin"><a href="#/app/user" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Enterprise Management</p></a></li>
             </ul>
-        </div><!-- Page Sidebar Inner -->
-    </div><!-- Page Sidebar -->
+        </div>
+    </div>
     
     <div class="page-inner" ui-view>          
     </div>
 </main>
-<nav class="cd-nav-container" id="cd-nav">
-    <header>
-        <h3>Navigation</h3>
-        <a href="#0" class="cd-close-nav">Close</a>
-    </header>
-    <ul class="cd-nav list-unstyled">
-        <li class="cd-selected" data-menu="index">
-            <a href="javsacript:void(0);">
-                <span>
-                    <i class="glyphicon glyphicon-home"></i>
-                </span>
-                <p>Dashboard</p>
-            </a>
-        </li>
-        <li data-menu="profile">
-            <a href="javsacript:void(0);">
-                <span>
-                    <i class="glyphicon glyphicon-user"></i>
-                </span>
-                <p>Profile</p>
-            </a>
-        </li>
-        <li data-menu="inbox">
-            <a href="javsacript:void(0);">
-                <span>
-                    <i class="glyphicon glyphicon-envelope"></i>
-                </span>
-                <p>Mailbox</p>
-            </a>
-        </li>
-        <li data-menu="#">
-            <a href="javsacript:void(0);">
-                <span>
-                    <i class="glyphicon glyphicon-tasks"></i>
-                </span>
-                <p>Tasks</p>
-            </a>
-        </li>
-        <li data-menu="#">
-            <a href="javsacript:void(0);">
-                <span>
-                    <i class="glyphicon glyphicon-cog"></i>
-                </span>
-                <p>Settings</p>
-            </a>
-        </li>
-        <li data-menu="calendar">
-            <a href="javsacript:void(0);">
-                <span>
-                    <i class="glyphicon glyphicon-calendar"></i>
-                </span>
-                <p>Calendar</p>
-            </a>
-        </li>
-    </ul>
-</nav>
-<div class="cd-overlay"></div>
-
-
-<!-- <script src="assets/plugins/offcanvasmenueffects/js/classie.js"></script>
-<script src="assets/plugins/offcanvasmenueffects/js/main.js"></script>
-<script src="assets/plugins/pace-master/pace.min.js"></script>
-<script src="assets/plugins/waves/waves.min.js"></script>
-<script src="assets/js/modern.min.js"></script> -->

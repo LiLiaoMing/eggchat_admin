@@ -6,6 +6,10 @@ scpApp.factory('$utils', function($http, $location) {
 	return {
 		server_base_url: server_base_url,
 
+		/*------------------------------------------------------
+		 * 				Token information
+		 *------------------------------------------------------*/
+
 		uid: localStorage.getItem('uid'),
 		qb_id: localStorage.getItem('qb_id'),
 		username: localStorage.getItem('username'),
@@ -20,6 +24,12 @@ scpApp.factory('$utils', function($http, $location) {
 
 		token: localStorage.getItem('token'),
 		qb_token: localStorage.getItem('qb_token'),
+
+		/*------------------------------------------------------
+		 * 				Constants
+		 *------------------------------------------------------*/
+		user_types: ['Core User', 'Client', 'Client Profile', 'User'],
+
 
 		/*------------------------------------------------------
 		 * 				Login
