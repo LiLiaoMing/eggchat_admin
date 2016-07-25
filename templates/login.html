@@ -1,0 +1,29 @@
+<div id="main-wrapper" ng-init="init()" style="height: 100%;">
+    <div class="row login-outer-panel" style="height: 100%;">
+        <div class="col-md-6 center login-inner-panel">
+            <div class="login-box">
+                <a  class="logo-name text-lg text-center">
+                    <img src="assets/images/logo_128x128.png">
+                </a>
+                <!-- <a href="index.html" class="logo-name text-lg text-center">Supreme Council for Planning</a> -->
+                <!-- <p class="text-center m-t-md">Please login into your account.</p> -->
+                <div class="alert alert-danger" role="alert" ng-show="errorMsg != ''">
+                    <strong >{{errorMsg}}</strong>
+                </div>
+                <form class="m-t-md" action="index.html">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" required ng-model="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required ng-model="password" ng-keypress="keyListener($event)">
+                    </div>
+                    <button type="button" class="btn btn-success btn-block" ng-click="login()">Login</button>
+                    <!-- <a href="#" class="display-block text-center m-t-md text-sm">Forgot Password?</a> -->
+                    <!-- <p class="text-center m-t-xs text-sm">Do not have an account?</p> -->
+                    <!-- <a href="#" class="btn btn-default btn-block m-t-md">Create an account</a> -->
+                </form>
+                <!-- <p class="text-center m-t-xs text-sm">2015 &copy; Modern by Steelcoders.</p> -->
+            </div>
+        </div>
+    </div><!-- Row -->
+</div><!-- Main Wrapper -->

@@ -1,0 +1,21 @@
+/* Write your custom CSS here */
+
+.login-outer-panel {
+	height: 526px;
+	position: relative;
+	text-align: center;
+}
+
+.login-inner-panel {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	width: 100%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.form-control-feedback {
+	right:10px;
+}

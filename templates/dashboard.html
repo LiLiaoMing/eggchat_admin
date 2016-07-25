@@ -1,0 +1,32 @@
+<div id="main-wrapper" ng-init="init()">
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <info-box-panel count="data.NumProjects[0]" title="'#of projects'" percent="data.NumProjects[1]" barclass="'success'"></info-box-panel>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <info-box-panel count="data.TotalBudget[0]" title="'Total Budget Assigned'" percent="data.TotalBudget[1]" barclass="'info'"></info-box-panel>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <info-box-panel count="data.BudgetUtilization[0]" title="'% Budget Utilization'" percent="data.BudgetUtilization[1]" barclass="'warning'"></info-box-panel>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <info-box-panel count="data.ProjectLength[0]" title="'Average Length of Project'" percent="data.ProjectLength[1]" barclass="'danger'"></info-box-panel>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <project-list projects="data.RecentProjects"></project-list>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <line-chart labels="data.ProjectNames" values1="data.BudgetUtilizations" values2="data.ScheduleCompletions"></line-chart>
+        </div>
+        <div class="col-md-6">
+            <bar-chart labels="data.ProjectNames" values1="data.PlannedBudgets" values2="data.ActualExpenditures"></bar-chart>
+        </div>
+    </div>
+</div>    
+    
