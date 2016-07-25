@@ -67,6 +67,33 @@ var scpApp = angular.module('scpApp', [
         }
     })
 
+    .state('main.core-manage', {
+        url: "/core-manage",
+        templateUrl: "templates/core_manage.html",
+        controller: "CoreManageCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.core-edit', {
+        url: "/core-edit",
+        templateUrl: "templates/core_edit.html",
+        controller: "CoreEditCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.backup', {
+        url: "/backup",
+        templateUrl: "templates/backup.html",
+        controller: "CoreEditCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
     /*
     .state('main.user', {
         url: "/user",

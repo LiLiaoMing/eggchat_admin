@@ -1,0 +1,70 @@
+<div id="main-wrapper" ng-init="init()">
+    <div class="page-inner">
+        <div class="page-title">
+            <h3>User Management</h3>
+            <div class="page-breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="#/core">Core Management</a></li>
+                    <li><a href="">User Management</a></li>
+                </ol>
+            </div>
+        </div>
+        <div id="main-wrapper">
+            
+            <div class="row">
+                <div class="panel panel-white">
+                    <div class="panel-heading clearfix">
+                        <h4 class="panel-title">Core Users</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <div id="example_wrapper" class="dataTables_wrapper">
+                                <table id="example" class="display table dataTable" style="width: 100%;" role="grid" aria-describedby="example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc">No.</th>
+                                            <th class="sorting_asc">Select</th>
+                                            <th class="sorting_asc">Username</th>
+                                            <th class="sorting">Name</th>
+                                            <th class="sorting">Mobile</th>
+                                            <th class="sorting">Email</th>
+                                            <th class="sorting">Disable</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr role="row" class="odd" ng-repeat="(key, value) in [1,2,3,4,5]">
+                                            <td>{{value}}</td>
+                                            <td><input type="radio" name="gender" value="{{value}}" checked></td>
+                                            <td>User{{value}}</td>
+                                            <td>Name{{value}}</td>
+                                            <td>{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}</td>
+                                            <td>User{{value}}@gmail.com</td>
+                                            <td><span><input type="checkbox"></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                                    <a class="paginate_button previous disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">Previous</a>
+                                    <span>
+                                        <a class="paginate_button current" aria-controls="example" data-dt-idx="1" tabindex="0">1</a>
+                                        <a class="paginate_button " aria-controls="example" data-dt-idx="2" tabindex="1" ng-repeat="(key, value) in [2,3,4,5]">{{value}}</a>
+                                    </span>
+                                    <a class="paginate_button next" aria-controls="example" data-dt-idx="7" tabindex="0" id="example_next">Next</a>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="button-panel">
+                    <a href="#/app/core-edit" class="btn btn-success" role="button">Add</a>
+                    <a href="#/app/core-edit" class="btn btn-success" role="button">Edit</a>
+                    <a href="#/app/core" class="btn btn-success" role="button" onclick="alert('Backup successful!.')">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>    
+    
