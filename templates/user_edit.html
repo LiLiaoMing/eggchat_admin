@@ -1,17 +1,17 @@
 <div id="main-wrapper" ng-init="init()">
     <div class="page-inner">
         <div class="page-title">
-            <h3>User Management</h3>
+            <h3>Add/Edit User</h3>
             <div class="page-breadcrumb">
                 <ol class="breadcrumb">
-                    <li><a href="#/core">Core Management</a></li>
-                    <li><a href="#/cores">User Management</a></li>
-                    <li><a href="">Add/Update</a></li>
+                    <li><a href="#/app/enterprise">Eeterprise Management</a></li>
+                    <li><a href="#/app/profile-select">Customer Interface</a></li>
+                    <li><a href="#/app/users">User Management</a></li>
+                    <li><a href="">Add/Edit User</a></li>
                 </ol>
             </div>
         </div>
         <div id="main-wrapper">
-            
             <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-white">
@@ -70,28 +70,19 @@
                                 <div class="form-group">
                                     <div class="col-sm-offset-1 col-sm-10">
                                         <div>
-                                            <input id="checkbox1" type="checkbox" name="checkbox" value="1" checked="checked"><label for="checkbox1">Core Management</label>
+                                            <input id="checkbox1" type="checkbox" name="checkbox" value="1" checked="checked"><label for="checkbox1">Manage Profiles</label>
                                         </div>
                                         <div class="left-padding-30">
-                                            <input id="checkbox2" type="checkbox" name="checkbox" value="2"><label for="checkbox2">User Management</label>
+                                            <input id="checkbox2" type="checkbox" name="checkbox" value="2"><label for="checkbox2">All</label>
                                         </div>
-                                        <div class="left-padding-30">
-                                            <input id="checkbox3" type="checkbox" name="checkbox" value="3"><label >Search & Circulate</label>
-                                        </div>
-                                        <div class="left-padding-30">
-                                            <input id="checkbox3" type="checkbox" name="checkbox" value="3"><label >Backup</label>
+                                        <div class="left-padding-30" ng-repeat="(key, value) in [1,2,3,4,5]">
+                                            <input id="checkbox3" type="checkbox" name="checkbox" ><label >Groupt {{value}}</label>
                                         </div>
                                         <div>
-                                            <input id="checkbox4" type="checkbox" name="checkbox" value="4"><label for="checkbox4">Enterprise Management</label>
+                                            <input id="checkbox4" type="checkbox" name="checkbox" value="4"><label for="checkbox4">User Management</label>
                                         </div>
-                                        <div class="left-padding-30">
-                                            <input id="checkbox5" type="checkbox" name="checkbox" value="5"><label for="checkbox5">Client Profile</label>
-                                        </div>
-                                        <div class="left-padding-30">
-                                            <input id="checkbox6" type="checkbox" name="checkbox" value="6"><label for="checkbox6">Search & Circulate</label>
-                                        </div>
-                                        <div class="left-padding-30">
-                                            <input id="checkbox7" type="checkbox" name="checkbox" value="7"><label for="checkbox7">Reporting</label>
+                                        <div>
+                                            <input id="checkbox4" type="checkbox" name="checkbox" value="4"><label for="checkbox4">Search & Circulate</label>
                                         </div>
                                     </div>
                                 </div>
@@ -103,10 +94,11 @@
             </div>
             <div class="row">
                 <div class="button-panel">
-                    <a href="#/app/cores" class="btn btn-success" role="button">Save</a>
+                    <a href="#/app/users" class="btn btn-success" role="button">Save</a>
                 </div>
             </div>
         </div>
     </div>  
 </div>    
     
+

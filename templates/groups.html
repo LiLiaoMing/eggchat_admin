@@ -1,0 +1,120 @@
+<div id="main-wrapper" ng-init="init()">
+    <div class="page-inner">
+        <div class="page-title">
+            <h3>Group Management</h3>
+            <div class="page-breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="#/app/enterprise">Eeterprise Management</a></li>
+                    <li><a href="#/app/profile-select">Customer Interface</a></li>
+                    <li><a href="">Group Management</a></li>
+                </ol>
+            </div>
+        </div>
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="panel panel-purple">
+                    <div class="panel-body">
+                        <h3 class="panel-title">Boyce Ludwig</h3><br/>
+                        <h4 class="panel-title">Customer: Boyce Ludwig</h4><br/>
+                        <h4 class="panel-title">Profile: April Madness</h4><br/>
+                        <h4 class="panel-title">Amderson, Tel: 7718843375, anfy@ludwig.co.za</h4><br/>
+                        <h4 class="panel-title">Campaign Date: 01-04-2016 to 31-04-2016</h4><br/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-white">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <div id="example_wrapper" class="dataTables_wrapper">
+                                    <table id="example" class="display table dataTable" style="width: 100%;" role="grid" aria-describedby="example_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc">No.</th>
+                                                <th class="sorting_asc">Select</th>
+                                                <th class="sorting_asc">Group Name</th>
+                                                <th class="sorting">Group Email</th>
+                                                <th class="sorting"># of Members</th>
+                                                <th class="sorting">GroupID</th>
+                                                <th class="sorting">Publie</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr role="row" class="odd" ng-repeat="(key, value) in [1,2,3,4,5]">
+                                                <td>{{value}}</td>
+                                                <td><input type="radio" name="gender" checked ></td>
+                                                <td>Gropu Name{{value}}</td>
+                                                <td>Group{{value}}@gmail.com</td>
+                                                <td>{{value}}{{value}}{{value}}{{value}}{{value}}</td>
+                                                <td>{{value}}</td>
+                                                <td>No</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                    <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                                        <a class="paginate_button previous disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">Previous</a>
+                                        <span>
+                                            <a class="paginate_button current" aria-controls="example" data-dt-idx="1" tabindex="0">1</a>
+                                            <a class="paginate_button " aria-controls="example" data-dt-idx="2" tabindex="1" ng-repeat="(key, value) in [2,3,4,5]">{{value}}</a>
+                                        </span>
+                                        <a class="paginate_button next" aria-controls="example" data-dt-idx="7" tabindex="0" id="example_next">Next</a>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-white">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <div id="example_wrapper" class="dataTables_wrapper">
+                                    <table id="example" class="display table dataTable" style="width: 100%;" role="grid" aria-describedby="example_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc">No.</th>
+                                                <th class="sorting_asc">Member Name</th>
+                                                <th class="sorting">Mobile #</th>
+                                                <th class="sorting">Email</th>
+                                                <th class="sorting">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr role="row" class="odd" ng-repeat="(key, value) in [1,2,3,4,5]">
+                                                <td>{{value}}</td>
+                                                <td>Member Name{{value}}</td>
+                                                <td>{{value}}{{value}}{{value}}{{value}}{{value}}</td>
+                                                <td>user{{value}}@gmail.com</td>
+                                                <td>Active</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                    <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                                        <a class="paginate_button previous disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">Previous</a>
+                                        <span>
+                                            <a class="paginate_button current" aria-controls="example" data-dt-idx="1" tabindex="0">1</a>
+                                            <a class="paginate_button " aria-controls="example" data-dt-idx="2" tabindex="1" ng-repeat="(key, value) in [2,3,4,5]">{{value}}</a>
+                                        </span>
+                                        <a class="paginate_button next" aria-controls="example" data-dt-idx="7" tabindex="0" id="example_next">Next</a>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="button-panel">
+                    <a href="#/app/group-edit" class="btn btn-success" role="button">Create</a>
+                    <a href="#/app/group-edit" class="btn btn-success" role="button">Edit</a>
+                    <a href="#/app/invite" class="btn btn-success" role="button">Import/Invite Members</a>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>    
+    
+

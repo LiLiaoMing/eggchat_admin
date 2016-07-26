@@ -1,0 +1,112 @@
+<div id="main-wrapper" ng-init="init()">
+    <div class="page-inner">
+        <div class="page-title">
+            <h3>Import/Invite Members</h3>
+            <div class="page-breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="#/app/enterprise">Eeterprise Management</a></li>
+                    <li><a href="#/app/profile-select">Customer Interface</a></li>
+                    <li><a href="#/app/groups">Group Management</a></li>
+                    <li><a href="">Import/Invite Members</a></li>
+                </ol>
+            </div>
+        </div>
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <div class="panel panel-white">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-6">
+                                        <div>
+                                            <input type="radio" name="searchkey"><label >Import from another group</label>
+                                        </div>
+                                        <div class="left-padding-30">
+                                            <div>
+                                                <select class="form-control m-b-sm">
+                                                    <option ng-repeat="(key, value) in [1,2,3,4,5]">Group{{value}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input type="radio" name="searchkey"><label >Invite Members</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-offset-4 col-sm-5">
+
+                                        <div>
+                                            <br>
+                                            <b>Single Member</b>
+                                            <br><br>
+                                        </div>
+
+                                        <div>
+                                            <div class="col-sm-3">
+                                                <!--<div class="form-group"> -->
+                                                    <label for="exampleInputEmail1">Name</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <!--<div class="form-group"> -->
+                                                    <label for="exampleInputEmail1">Mobile</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <!--<div class="form-group"> -->
+                                                    <label for="exampleInputEmail1">Email</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <!--<div class="form-group"> -->
+                                                    <label for="exampleInputEmail1">City</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                                    <br/>
+                                                    <a href="#/app/groups" class="btn btn-success" role="button">Invite</a>
+                                                    <br/><br/>
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <b>Browse</b>
+                                        </div>
+                                        
+                                        <div>
+                                            <div class="col-sm-9">
+                                                <!--<div class="form-group"> -->
+                                                    <label for="exampleInputEmail1"></label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{filename}(xls/xlsx format)">
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <!--<div class="form-group"> -->
+                                                    <br/>
+                                                    <a href="#/app/groups" class="btn btn-success" role="button">Browser</a>
+                                                    <br/><br/>
+                                                    <a href="#/app/groups" class="btn btn-success" role="button">Import/Invite</a>
+                                                <!-- </div> -->
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="button-panel">
+                    <a href="#/app/groups" class="btn btn-success" role="button">Submit</a>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>    
+    
+

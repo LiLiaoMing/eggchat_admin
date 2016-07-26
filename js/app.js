@@ -1,12 +1,12 @@
 var scpApp = angular.module('scpApp', [
 								'ngRoute',
                                 'ui.router',
+                                'ng-bootstrap-datepicker',
 								// 'app.directives.infoBoxPanel',
 								// 'app.directives.lineChart',
 								// 'app.directives.barChart',
         //                         'app.directives.flatChart',
 								// 'app.directives.projectList', 
-        //                         'ng-bootstrap-datepicker',
         //                         'app.directives.ngConfirmClick'
 							])
 
@@ -67,10 +67,10 @@ var scpApp = angular.module('scpApp', [
         }
     })
 
-    .state('main.core-manage', {
-        url: "/core-manage",
-        templateUrl: "templates/core_manage.html",
-        controller: "CoreManageCtrl",
+    .state('main.cores', {
+        url: "/cores",
+        templateUrl: "templates/cores.html",
+        controller: "CoresCtrl",
         resolve: {
             'result': userLoggedIn
         }
@@ -89,6 +89,105 @@ var scpApp = angular.module('scpApp', [
         url: "/backup",
         templateUrl: "templates/backup.html",
         controller: "CoreEditCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.enterprise', {
+        url: "/enterprise",
+        templateUrl: "templates/enterprise.html",
+        controller: "EnterpriseCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.client-edit', {
+        url: "/client-edit",
+        templateUrl: "templates/client_edit.html",
+        controller: "ClientEditCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.profiles', {
+        url: "/profiles",
+        templateUrl: "templates/profiles.html",
+        controller: "ProfilesCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.profile-edit', {
+        url: "/profile-edit",
+        templateUrl: "templates/profile_edit.html",
+        controller: "ProfileEditCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.stat', {
+        url: "/stat",
+        templateUrl: "templates/stat.html",
+        controller: "StatCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.profile-select', {
+        url: "/profile-select",
+        templateUrl: "templates/profile_select.html",
+        controller: "ProfileSelectCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.groups', {
+        url: "/groups",
+        templateUrl: "templates/groups.html",
+        controller: "GroupsCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.group-edit', {
+        url: "/group-edit",
+        templateUrl: "templates/group_edit.html",
+        controller: "GroupEditCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.invite', {
+        url: "/invite",
+        templateUrl: "templates/invite.html",
+        controller: "InviteCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.users', {
+        url: "/users",
+        templateUrl: "templates/users.html",
+        controller: "UsersCtrl",
+        resolve: {
+            'result': userLoggedIn
+        }
+    })
+
+    .state('main.user-edit', {
+        url: "/user-edit",
+        templateUrl: "templates/user_edit.html",
+        controller: "UserEditCtrl",
         resolve: {
             'result': userLoggedIn
         }
