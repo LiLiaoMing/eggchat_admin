@@ -1,35 +1,55 @@
 scpApp.controller('CoreEditCtrl', function($scope, $location, $utils) {
 	
+	$scope.errorMsg = "";
+	$scope.isLoading = false;
+
 	$scope.user = {};
-	$scope.user.permission = [true, true, true, true, true, true, true, true];
-	
+	$scope.permissions = [true, true, true, true, true, true, true, true];
+
+
 	$scope.init = function() {
-	
 	}
 
 	$scope.create = function() {
-        if ($scope.user.Password != $scope.user.ConfirmPassword)
-        {
-            return;
-        }
-        $users.create($scope.user, function(res) {
-            console.log(JSON.stringify(res));
-            $location.path('app/user');
+		$scope.errorMsg = "";
+		$scope.isLoading = true;
+
+		$scope.user.level = "1";
+		$scope.user.permission = '';
+		for (var i=1; i<8; i++)
+		{
+			if (i==4)	continue;
+			
+			if ($scope.permissions[i]) 
+				$scope.user.permission = $scope.user.permission + 'Y';
+			else
+				$scope.user.permission = $scope.user.permission + 'N';	
+		}
+
+        $utils.userCreate($scope.user, function(res) {
+        	// console.log(JSON.stringify(res));
+            if (res.data.status == 'fail') {
+            	$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message);	
+            	$scope.isLoading = false;
+            }
+            else
+            	$location.path('app/cores');
         }, function(res) {
-            console.log('error' + res);
+			$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
+			$scope.isLoading = false;
         }); 
     }
 
 
     $scope.updateCorePermission = function () {
-    	$scope.user.permission[1] = $scope.user.permission[0];
-    	$scope.user.permission[2] = $scope.user.permission[0];
-    	$scope.user.permission[3] = $scope.user.permission[0];
+    	$scope.permissions[1] = $scope.permissions[0];
+    	$scope.permissions[2] = $scope.permissions[0];
+    	$scope.permissions[3] = $scope.permissions[0];
     }
 
     $scope.updateEnterprisePermission = function () {
-    	$scope.user.permission[5] = $scope.user.permission[4];
-    	$scope.user.permission[6] = $scope.user.permission[4];
-    	$scope.user.permission[7] = $scope.user.permission[4];
+    	$scope.permissions[5] = $scope.permissions[4];
+    	$scope.permissions[6] = $scope.permissions[4];
+    	$scope.permissions[7] = $scope.permissions[4];
     }
 });
