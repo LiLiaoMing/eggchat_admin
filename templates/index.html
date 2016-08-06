@@ -48,14 +48,25 @@
                             <img src="assets/images/profile-menu-image.png" class="img-circle img-responsive" alt="">
                         </div>
                         <div class="sidebar-profile-details">
-                            <span>{{full_name}}<br><small>{{level}}</small></span>
+                            <span>{{full_name}}<br><small>{{level_title}}</small></span>
                         </div>
                     </a>
                 </div>
             </div>
-            <ul class="menu accordion-menu">
-                <li><a href="#/app/dashboard" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Core Management</p></a></li>
-                <li ng-show="!isAdmin"><a href="#/app/enterprise" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-briefcase"></span><p>Enterprise Management</p></a></li>
+            <ul class="menu accordion-menu" ng-show="{{level==1}}">
+                <li><a href="#/app/core" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Core Management</p></a></li>
+                <li><a href="#/app/enterprise" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-briefcase"></span><p>Enterprise Management</p></a></li>
+            </ul>
+            <ul class="menu accordion-menu" ng-show="{{level==2}}">
+                <li><a href="#/app/profiles" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Profile Management</p></a></li>
+                <li><a href="#/app/profile-select" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-briefcase"></span><p>Customer Interface</p></a></li>
+            </ul>
+            <ul class="menu accordion-menu" ng-show="{{level==3}}">
+                <li><a href="#/app/groups" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon glyphicon-globe"></span><p>Group Management</p></a></li>
+                <li><a href="#/app/users" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>User Management</p></a></li>
+            </ul>
+            <ul class="menu accordion-menu" ng-show="{{level==4}}">
+                <li><a href="#/app/user-edit" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>User Management</p></a></li>
             </ul>
         </div>
     </div>

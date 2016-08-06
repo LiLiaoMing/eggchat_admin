@@ -2,12 +2,7 @@ var scpApp = angular.module('scpApp', [
 								'ngRoute',
                                 'ui.router',
                                 'ng-bootstrap-datepicker',
-								// 'app.directives.infoBoxPanel',
-								// 'app.directives.lineChart',
-								// 'app.directives.barChart',
-        //                         'app.directives.flatChart',
-								// 'app.directives.projectList', 
-        //                         'app.directives.ngConfirmClick'
+                                'app.directives',
 							])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -21,6 +16,16 @@ var scpApp = angular.module('scpApp', [
         }
     }
 
+    function permissionCheck(page) {
+
+        if (page == 'circulate')
+        {
+            // alert(localStorage.getItem('permission'));
+            // window.location = '#/app/enterprise';
+            window.location.reload();   
+        }
+    }
+
     $urlRouterProvider.otherwise('/app/core');
 
   	$stateProvider
@@ -30,7 +35,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/index.html",
         controller: "NavCtrl",
         resolve: {
-            'result': userLoggedIn
+            'login': userLoggedIn
         }
     })
 
@@ -45,8 +50,13 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/login.html",
         controller: "LogoutCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
+    })
+
+    .state('main.permission-problem',{
+        url: "/permission-problem",
+        templateUrl: "templates/permission-problem.html"
     })
     
     .state('main.core', {
@@ -54,7 +64,14 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/core.html",
         controller: "CoreCtrl",
         resolve: {
-            'result': userLoggedIn
+            'login-check': userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -63,7 +80,17 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/circulate.html",
         controller: "CirculateCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[1] == 'Y')
+                        return;
+                }
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -72,7 +99,17 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/cores.html",
         controller: "CoresCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[0] == 'Y')
+                        return;
+                }
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -81,7 +118,17 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/core_edit.html",
         controller: "CoreEditCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[0] == 'Y')
+                        return;
+                }
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -90,7 +137,17 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/backup.html",
         controller: "CoreEditCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -99,7 +156,17 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/enterprise.html",
         controller: "EnterpriseCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -108,7 +175,17 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/client_edit.html",
         controller: "ClientEditCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -117,7 +194,19 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/profiles.html",
         controller: "ProfilesCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -126,7 +215,19 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/profile_edit.html",
         controller: "ProfileEditCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -135,7 +236,19 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/stat.html",
         controller: "StatCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -144,7 +257,19 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/profile_select.html",
         controller: "ProfileSelectCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2" || localStorage.getItem('level') == "3")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -153,7 +278,19 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/groups.html",
         controller: "GroupsCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2" || localStorage.getItem('level') == "3")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -162,7 +299,19 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/group_edit.html",
         controller: "GroupEditCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2" || localStorage.getItem('level') == "3")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -171,7 +320,19 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/invite.html",
         controller: "InviteCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2" || localStorage.getItem('level') == "3")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -180,7 +341,19 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/users.html",
         controller: "UsersCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2" || localStorage.getItem('level') == "3")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -189,7 +362,19 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/user_edit.html",
         controller: "UserEditCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2" || localStorage.getItem('level') == "3" || localStorage.getItem('level') == "4")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
@@ -199,7 +384,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/user.html",
         controller: "UserCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
 
@@ -208,7 +393,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/user_detail.html",
         controller: "UserDetailCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
 
@@ -217,7 +402,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/table.html",
         controller: "TableCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
 
@@ -226,7 +411,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/project_detail.html",
         controller: "ProjectDetailCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
 
@@ -235,7 +420,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/component.html",
         controller: "ComponentCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
 
@@ -244,7 +429,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/component_detail.html",
         controller: "ComponentDetailCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
 
@@ -253,7 +438,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/initiative.html",
         controller: "InitiativeCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
 
@@ -262,7 +447,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/initiative_detail.html",
         controller: "InitiativeDetailCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
 
@@ -271,7 +456,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/graph.html",
         controller: "GraphCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
 
@@ -280,7 +465,7 @@ var scpApp = angular.module('scpApp', [
         templateUrl: "templates/chart.html",
         controller: "ChartCtrl",
         resolve: {
-            'result': userLoggedIn
+            login_check: userLoggedIn
         }
     })
   	*/
