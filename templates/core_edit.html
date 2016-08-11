@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">Confirm Password</label>
                                     <div class="col-sm-7">
-                                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" required pw-check="Password" ng-model="user.confirmpassword">
+                                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" required pw-check="Password" ng-model="user.confirmpassword" value="{{user.confirmpassword}}">
                                         <span class="text-danger" ng-show="myForm.ConfirmPassword.$error.required">Required!</span>
                                         <span class="text-danger" ng-show="myForm.ConfirmPassword.$error.pwmatch">Password don't match!</span>
                                     </div>
@@ -55,7 +55,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">Mobile</label>
                                     <div class="col-sm-7">
-                                        <input type="text" name="Mobile" class="form-control" ng-model="user.mobile" value="{{user.mobile}}" required ng-pattern="'\\d{0,1}\\d{11}'">
+                                        <input type="number" name="Mobile" class="form-control" ng-model="user.mobile" value="{{user.mobile}}" required ng-pattern="'\\d{0,1}\\d{11}'">
                                         <span class="text-danger" ng-show="myForm.Mobile.$error.required">Required!</span>
                                         <span class="text-danger" ng-show="!myForm.Mobile.$valid">Not valid mobile number!</span>
                                     </div>
@@ -89,32 +89,31 @@
                                 <div class="form-group">
                                     <div class="col-sm-offset-1 col-sm-10">
                                         <div>
-                                            <input type="checkbox" ng-model="permissions[0]" ng-change="updateCorePermission()"><label>Core Management</label>
+                                            <input type="checkbox" ng-model="permissions[0]" value="{{user.permissions[0]}}" ng-change="updateCorePermission()"><label>Core Management</label>
                                         </div>
                                         <div class="left-padding-30">
-                                            <input type="checkbox" ng-model="permissions[1]"><label>User Management</label>
+                                            <input type="checkbox" ng-model="permissions[1]" value="{{user.permissions[1]}}"><label>User Management</label>
                                         </div>
                                         <div class="left-padding-30">
-                                            <input type="checkbox" ng-model="permissions[2]"><label>Search & Circulate</label>
+                                            <input type="checkbox" ng-model="permissions[2]" value="{{user.permissions[2]}}"><label>Search & Circulate</label>
                                         </div>
                                         <div class="left-padding-30">
-                                            <input type="checkbox" ng-model="permissions[3]"><label>Backup</label>
+                                            <input type="checkbox" ng-model="permissions[3]" value="{{user.permissions[3]}}"><label>Backup</label>
                                         </div>
                                         <div>
-                                            <input type="checkbox" ng-model="permissions[4]" ng-change="updateEnterprisePermission()"><label>Enterprise Management</label>
+                                            <input type="checkbox" ng-model="permissions[4]" value="{{user.permissions[4]}}" ng-change="updateEnterprisePermission()"><label>Enterprise Management</label>
                                         </div>
                                         <div class="left-padding-30">
-                                            <input type="checkbox" ng-model="permissions[5]"><label>Client Profile</label>
+                                            <input type="checkbox" ng-model="permissions[5]" value="{{user.permissions[5]}}"><label>Client Profile</label>
                                         </div>
                                         <div class="left-padding-30">
-                                            <input type="checkbox" ng-model="permissions[6]"><label>Search & Circulate</label>
+                                            <input type="checkbox" ng-model="permissions[6]" value="{{user.permissions[6]}}"><label>Search & Circulate</label>
                                         </div>
                                         <div class="left-padding-30">
-                                            <input type="checkbox" ng-model="permissions[7]"><label>Reporting</label>
+                                            <input type="checkbox" ng-model="permissions[7]" value="{{user.permissions[7]}}"><label>Reporting</label>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </form>
                         </div>
                     </div>
@@ -122,8 +121,10 @@
             </div>
             <div class="row">
                 <div class="button-panel">
-                    <input type="button" class="btn btn-success" role="button" ng-click="create()" value="Save(try)">
-                    <input type="button" class="btn btn-success" role="button" ng-click="create()" ng-disabled="myForm.$invalid" value="Save">
+                    <!-- <input type="button" class="btn btn-success" role="button" ng-click="create()" value="Save(try)"> -->
+                    <input type="button" class="btn btn-success" role="button" ng-click="create()" ng-disabled="myForm.$invalid" ng-show="{{id==null}}" value="Create">
+                    <input type="button" class="btn btn-success" role="button" ng-click="update()" ng-disabled="myForm.$invalid" ng-show="{{id!=null}}" value="Update">
+                    
                 </div>
             </div>
         </div>

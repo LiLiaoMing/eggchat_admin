@@ -5,7 +5,7 @@
             <div class="page-breadcrumb">
                 <ol class="breadcrumb">
                     <li><a href="#/app/enterprise">Eeterprise Management</a></li>
-                    <li><a href="#/app/profile-select">Customer Interface</a></li>
+                    <li><a href="#/app/profiles">Customer Interface</a></li>
                     <li><a href="">Group Management</a></li>
                 </ol>
             </div>
@@ -14,11 +14,11 @@
             <div class="row">
                 <div class="panel panel-purple">
                     <div class="panel-body">
-                        <h3 class="panel-title">Boyce Ludwig</h3><br/>
-                        <h4 class="panel-title">Customer: Boyce Ludwig</h4><br/>
-                        <h4 class="panel-title">Profile: April Madness</h4><br/>
-                        <h4 class="panel-title">Amderson, Tel: 7718843375, anfy@ludwig.co.za</h4><br/>
-                        <h4 class="panel-title">Campaign Date: 01-04-2016 to 31-04-2016</h4><br/>
+                        <h3 class="panel-title">{{data.customer.username}}</h3><br/>
+                        <h4 class="panel-title">Customer: {{data.customer.full_name}}</h4><br/>
+                        <h4 class="panel-title">Profile: {{data.profile.username}}</h4><br/>
+                        <h4 class="panel-title">{{data.customer.username}}, Tel: {{data.customer.mobile}}, {{data.customer.email}}</h4><br/>
+                        <h4 class="panel-title">Campaign Date: {{data.profile.start_date}} to {{data.profile.expiry_date}}</h4><br/>
                     </div>
                 </div>
             </div>

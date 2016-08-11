@@ -26,29 +26,32 @@
                         <div class="panel-body">
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Group Name</label>
+                                    <label class="col-sm-4 control-label">Group Name</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="inputEmail3" >
+                                        <input type="text" class="form-control" name="GroupName" ng-model="group.name" value="{{group.name}}" required>
+                                        <span class="text-danger" ng-show="myForm.GroupName.$error.required">Required!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-4 control-label">Groupp Admin</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control m-b-sm">
-                                            <option ng-repeat="(key, value) in [1,2,3,4,5]">Username{{value}}</option>
+                                        <select class="form-control m-b-sm" ng-model="group.adminId">
+                                            <option ng-repeat="(key, user) in data.users" value="{{users.id}}">{{user.username}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
+                                    <label class="col-sm-4 control-label">Email</label>
                                     <div class="col-sm-7">
-                                        <input type="email" class="form-control" id="inputEmail3" >
+                                        <input type="email" name="Email" class="form-control" ng-model="group.email" value="{{group.email}}" required>
+                                        <span class="text-danger" ng-show="myForm.Email.$error.required">Required!</span>
+                                        <span class="text-danger" ng-show="myForm.Email.$error.email">Not valid email!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-4 control-label">Public</label>
                                     <div class="col-sm-7">
-                                        <input type="checkbox" class="form-control">
+                                        <input type="checkbox" class="form-control" ng-model="group.public" value="{{group.public}}" >
                                     </div>
                                 </div>
                             </form>

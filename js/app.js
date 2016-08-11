@@ -115,6 +115,7 @@ var scpApp = angular.module('scpApp', [
 
     .state('main.core-edit', {
         url: "/core-edit",
+        // url: "/core-edit/:userId",
         templateUrl: "templates/core_edit.html",
         controller: "CoreEditCtrl",
         resolve: {
@@ -132,6 +133,26 @@ var scpApp = angular.module('scpApp', [
         }
     })
 
+    .state('main.core-edit-update', {
+        url: "/core-edit-update/:userId",
+        templateUrl: "templates/core_edit.html",
+        controller: "CoreEditCtrl",
+        resolve: {
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[0] == 'Y')
+                        return;
+                }
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
+        }
+    })
+
+    
     .state('main.backup', {
         url: "/backup",
         templateUrl: "templates/backup.html",
@@ -189,6 +210,25 @@ var scpApp = angular.module('scpApp', [
         }
     })
 
+    .state('main.client-edit-update', {
+        url: "/client-edit-update/:userId",
+        templateUrl: "templates/client_edit.html",
+        controller: "ClientEditCtrl",
+        resolve: {
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
+        }
+    })
+
     .state('main.profiles', {
         url: "/profiles",
         templateUrl: "templates/profiles.html",
@@ -212,6 +252,27 @@ var scpApp = angular.module('scpApp', [
 
     .state('main.profile-edit', {
         url: "/profile-edit",
+        templateUrl: "templates/profile_edit.html",
+        controller: "ProfileEditCtrl",
+        resolve: {
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
+        }
+    })
+
+    .state('main.profile-edit-update', {
+        url: "/profile-edit-update/:userId",
         templateUrl: "templates/profile_edit.html",
         controller: "ProfileEditCtrl",
         resolve: {
@@ -315,6 +376,27 @@ var scpApp = angular.module('scpApp', [
         }
     })
 
+    .state('main.group-edit-update', {
+        url: "/group-edit-update/:groupId",
+        templateUrl: "templates/group_edit.html",
+        controller: "GroupEditCtrl",
+        resolve: {
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2" || localStorage.getItem('level') == "3")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
+        }
+    })
+
     .state('main.invite', {
         url: "/invite",
         templateUrl: "templates/invite.html",
@@ -378,97 +460,27 @@ var scpApp = angular.module('scpApp', [
         }
     })
 
-    /*
-    .state('main.user', {
-        url: "/user",
-        templateUrl: "templates/user.html",
-        controller: "UserCtrl",
+    .state('main.user-edit-update', {
+        url: "/user-edit-update/:userId",
+        templateUrl: "templates/user_edit.html",
+        controller: "UserEditCtrl",
         resolve: {
-            login_check: userLoggedIn
+            login_check: userLoggedIn,
+            permission_check: function() {
+                if (localStorage.getItem('level') == "1")
+                {
+                    if (localStorage.getItem('permission')[3] == 'Y')
+                        return;
+                }
+                if (localStorage.getItem('level') == "2" || localStorage.getItem('level') == "3" || localStorage.getItem('level') == "4")
+                    return;
+
+                window.location = '#/app/permission-problem';
+                // window.location.reload();
+            }
         }
     })
 
-    .state('main.user_detail', {
-        url: "/user/:userId",
-        templateUrl: "templates/user_detail.html",
-        controller: "UserDetailCtrl",
-        resolve: {
-            login_check: userLoggedIn
-        }
-    })
-
-    .state('main.table', {
-        url: "/table",
-        templateUrl: "templates/table.html",
-        controller: "TableCtrl",
-        resolve: {
-            login_check: userLoggedIn
-        }
-    })
-
-    .state('main.table_detail', {
-        url: "/table/:projectId",
-        templateUrl: "templates/project_detail.html",
-        controller: "ProjectDetailCtrl",
-        resolve: {
-            login_check: userLoggedIn
-        }
-    })
-
-    .state('main.component', {
-        url: "/components/:projectId/:projectName",
-        templateUrl: "templates/component.html",
-        controller: "ComponentCtrl",
-        resolve: {
-            login_check: userLoggedIn
-        }
-    })
-
-    .state('main.component_detail', {
-        url: "/component/:projectId/:projectName/:componentId",
-        templateUrl: "templates/component_detail.html",
-        controller: "ComponentDetailCtrl",
-        resolve: {
-            login_check: userLoggedIn
-        }
-    })
-
-    .state('main.initiative', {
-        url: "/initiative",
-        templateUrl: "templates/initiative.html",
-        controller: "InitiativeCtrl",
-        resolve: {
-            login_check: userLoggedIn
-        }
-    })
-
-    .state('main.initiative_detail', {
-        url: "/initiative/:initiativeId",
-        templateUrl: "templates/initiative_detail.html",
-        controller: "InitiativeDetailCtrl",
-        resolve: {
-            login_check: userLoggedIn
-        }
-    })
-
-    .state('main.graph', {
-        url: "/graph/:projectId",
-        templateUrl: "templates/graph.html",
-        controller: "GraphCtrl",
-        resolve: {
-            login_check: userLoggedIn
-        }
-    })
-
-    .state('main.chart', {
-        url: "/chart",
-        templateUrl: "templates/chart.html",
-        controller: "ChartCtrl",
-        resolve: {
-            login_check: userLoggedIn
-        }
-    })
-  	*/
 });
 
 

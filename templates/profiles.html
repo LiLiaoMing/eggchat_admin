@@ -10,7 +10,12 @@
             </div>
         </div>
         <div id="main-wrapper">
-            
+            <div class="alert alert-danger" role="alert" ng-show="errorMsg!=''">
+                <strong >{{errorMsg}}</strong>
+            </div>      
+            <div class="loader-container" ng-show="isLoading">
+                <div class="loader"></div>
+            </div>      
             <div class="row">
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
@@ -22,41 +27,45 @@
                                 <table id="example" class="display table dataTable" style="width: 100%;" role="grid" aria-describedby="example_info">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc">No.</th>
-                                            <th class="sorting_asc">Select</th>
-                                            <th class="sorting_asc">Profile</th>
-                                            <th class="sorting">Contact</th>
-                                            <th class="sorting">Contact No</th>
-                                            <th class="sorting">Email</th>
-                                            <th class="sorting">Expired</th>
-                                            <th class="sorting">Start Date</th>
-                                            <th class="sorting">Expiry Date</th>
-                                            <th class="sorting">Disable</th>
+                                            <th>No.</th>
+                                            <th>Select</th>
+                                            <th>Profile</th>
+                                            <th>Contact</th>
+                                            <th>Contact No</th>
+                                            <th>Email</th>
+                                            <th>Expired</th>
+                                            <th>Start Date</th>
+                                            <th>Expiry Date</th>
+                                            <th>Disable</th>
+                                            <th>Update</th>
+                                            <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr role="row" class="odd" ng-repeat="(key, value) in [1,2,3,4,5]">
-                                            <td>{{value}}</td>
-                                            <td><input type="radio" name="gender" checked ></td>
-                                            <td>Profile{{value}}</td>
-                                            <td>Contact{{value}}</td>
-                                            <td>{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}{{value}}</td>
-                                            <td>customer{{value}}@gmail.com</td>
-                                            <td>Expired</td>
-                                            <td>12-{{value}}-2015</td>
-                                            <td>12-{{value}}-2015</td>
+                                        <tr role="row" class="odd" ng-repeat="(key, user) in data.users">
+                                            <td>{{searchKeys.offset + key + 1}}</td>
+                                            <td><input type="radio" name="selected" ng-value="{{user}}" ng-model="data.profile"></td>
+                                            <td>{{user.username}}</td>
+                                            <td>{{user.pri_contact}}</td>
+                                            <td>{{user.pri_contact_no}}</td>
+                                            <td>{{user.email}}</td>
+                                            <td></td>
+                                            <td>{{user.start_date}}</td>
+                                            <td>{{user.expiry_date}}</td>
                                             <td><span><input type="checkbox"></span></td>
+                                            <td><a href="#/app/profile-edit-update/{{user.id}}"><i class="glyphicon glyphicon-edit" style="font-size:16px"></i></a></td>
+                                            <td><a href="#/app/profiles" ><i class="glyphicon glyphicon-floppy-remove"  style="font-size:16px" confirmed-click="delete({{user.id}})" ng-confirm-click="Are you sure do you want to delete this user?"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
                                 <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                                    <a class="paginate_button previous disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">Previous</a>
+                                    <a class="paginate_button previous disabled" ng-click="firstPage()"><<</a>
+                                    <a class="paginate_button previous disabled" ng-click="prevPage()"><</a>
                                     <span>
-                                        <a class="paginate_button current" aria-controls="example" data-dt-idx="1" tabindex="0">1</a>
-                                        <a class="paginate_button " aria-controls="example" data-dt-idx="2" tabindex="1" ng-repeat="(key, value) in [2,3,4,5]">{{value}}</a>
+                                        <input type="number" class="search-input page-search" ng-model="searchKeys.pageNum" ng-keypress="keyListener($event)">
                                     </span>
-                                    <a class="paginate_button next" aria-controls="example" data-dt-idx="7" tabindex="0" id="example_next">Next</a>
+                                    <a class="paginate_button next" ng-click="nextPage()">></a>
+                                    <a class="paginate_button next" ng-click="lastPage()">>></a>
                                 </div>
                             </div>  
                         </div>
@@ -69,6 +78,10 @@
                     <a href="#/app/profile-edit" class="btn btn-success" role="button">Edit</a>
                     <a href="#/app/stat" class="btn btn-success" role="button">Stats</a>
                     <a href="#/app/enterprise" class="btn btn-success" role="button">Save</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="" class="btn btn-success" role="button" ng-click="gotoGroups()">Group Management</a>
+                    <a href="" class="btn btn-success" role="button" ng-click="gotoUsers()">User Management</a>
+                    <a href="" class="btn btn-success" role="button" ng-click="gotoCirculate()">Search & Circulate</a>
                 </div>
             </div>
         </div>

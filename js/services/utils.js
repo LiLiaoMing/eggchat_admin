@@ -1,14 +1,15 @@
 scpApp.factory('$utils', function($http, $location) {
 
-	// var server_base_url =  'http://52.39.194.215/eggchat/api/';
-	var server_base_url =  'http://192.168.1.50/projects/eggchat/api/';
+	var server_base_url =  'http://52.39.194.215/eggchat/api/';
+	// var server_base_url =  'http://192.168.1.50/projects/eggchat/api/';
 
 	public_members = {
 		server_base_url: server_base_url,
+		amount_per_page: 5,
 
-		/*------------------------------------------------------
+		/*----------------------------------------------------------------------------------------------
 		 * 				Token information
-		 *------------------------------------------------------*/
+		 *----------------------------------------------------------------------------------------------*/
 
 		user : {
 			uid: localStorage.getItem('uid'),
@@ -26,16 +27,20 @@ scpApp.factory('$utils', function($http, $location) {
 			token: localStorage.getItem('token'),
 			qb_token: localStorage.getItem('qb_token'),	
 		},
+		
+		client: JSON.parse(localStorage.getItem('client')),
+		profile: JSON.parse(localStorage.getItem('profile')),
 
-		/*------------------------------------------------------
+
+		/*----------------------------------------------------------------------------------------------
 		 * 				Constants
-		 *------------------------------------------------------*/
+		 *----------------------------------------------------------------------------------------------*/
 		user_types: ['Core User', 'Client', 'Client Profile', 'User'],
 
 
-		/*------------------------------------------------------
+		/*----------------------------------------------------------------------------------------------
 		 * 				Login
-		 *------------------------------------------------------*/
+		 *----------------------------------------------------------------------------------------------*/
 		login: function (username, password, callback) {
 
 			$http({
@@ -98,52 +103,58 @@ scpApp.factory('$utils', function($http, $location) {
 			);
 		},
 
-		// get: function (success_callback, error_callback) {
+		userSearch: function (keys, success_callback, error_callback) {
 			
-		// 	$http({
-		// 		method: 'GET',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 			'Authorization': localStorage.getItem('token')
-		// 		},
-		// 		url: $utils.server_base_url + 'Users',
-		// 		cache: false
-		// 	}).then (
-		// 		function successCallback(res) {
-		// 			success_callback(res);
-		// 		},
-		// 		function errorCallback(res) {
-		// 			error_callback(res);
-		// 		}
-		// 	);
-		// },
-		// update: function (user, success_callback, error_callback) {
+			$http({
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'token': localStorage.getItem('token')
+				},
+				url: server_base_url + 'user/search',
+				params: keys,
+				cache: false
+			}).then (
+				function successCallback(res) {
+					success_callback(res);
+				},
+				function errorCallback(res) {
+					error_callback(res);
+				}
+			);
+		},
+		
+		userUpdate: function (user, success_callback, error_callback) {
 			
-		// 	$http({
-		// 		method: 'POST',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 			'Authorization': localStorage.getItem('token')
-		// 		},
-		// 		data: JSON.stringify(user),
-		// 		url: $utils.server_base_url + 'Users/' + user.Id,
-		// 		cache: false
-		// 	}).then (
-		// 		function successCallback(res) {
-		// 			success_callback(res);
-		// 		},
-		// 		function errorCallback(res) {
-		// 			error_callback(res);
-		// 		}
-		// 	);
-		// },
+			$http({
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'token': localStorage.getItem('token')
+				},
+				data: JSON.stringify(user),
+				url: server_base_url + 'user/',
+				cache: false
+			}).then (
+				function successCallback(res) {
+					success_callback(res);
+				},
+				function errorCallback(res) {
+					error_callback(res);
+				}
+			);
+		},
+
+		/*----------------------------------------------------------------------------------------------
+		 * 				User Create
+		 *----------------------------------------------------------------------------------------------*/
 		userCreate: function (user, success_callback, error_callback) {
 			
 			$http({
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'Authorization': localStorage.getItem('token')
+					// 'token': localStorage.getItem('token')
 				},
 				data: user,
 				url: server_base_url + 'user/',
@@ -157,24 +168,54 @@ scpApp.factory('$utils', function($http, $location) {
 				}
 			);
 		},
-		// delete: function (id, success_callback, error_callback) {
+
+
+		/*----------------------------------------------------------------------------------------------
+		 * 				Delete User
+		 *----------------------------------------------------------------------------------------------*/
+		userDelete: function (id, success_callback, error_callback) {
 			
-		// 	$http({
-		// 		method: 'GET',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 			'Authorization': localStorage.getItem('token')
-		// 		},
-		// 		url: $utils.server_base_url + 'Users/' + id + '?op=del'
-		// 	}).then (
-		// 		function successCallback(res) {
-		// 			success_callback(res);
-		// 		},
-		// 		function errorCallback(res) {
-		// 			error_callback(res);
-		// 		}
-		// 	);
-		// }
+			$http({
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'token': localStorage.getItem('token')
+				},
+				url: server_base_url + 'user/delete/?id=' + id,
+			}).then (
+				function successCallback(res) {
+					success_callback(res);
+				},
+				function errorCallback(res) {
+					error_callback(res);
+				}
+			);
+		},
+
+
+		/*----------------------------------------------------------------------------------------------
+		 * 				Group Create
+		 *----------------------------------------------------------------------------------------------*/
+		groupCreate: function (group, success_callback, error_callback) {
+			
+			$http({
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					// 'token': localStorage.getItem('token')
+				},
+				data: user,
+				url: server_base_url + 'user/',
+				cache: false
+			}).then (
+				function successCallback(res) {
+					success_callback(res);
+				},
+				function errorCallback(res) {
+					error_callback(res);
+				}
+			);
+		},
 	};
 
 	return public_members;

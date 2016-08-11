@@ -5,13 +5,19 @@
             <div class="page-breadcrumb">
                 <ol class="breadcrumb">
                     <li><a href="#/app/enterprise">Eeterprise Management</a></li>
-                    <li><a href="#/app/profile-select">Customer Interface</a></li>
+                    <li><a href="#/app/profiles">Customer Interface</a></li>
                     <li><a href="#/app/users">User Management</a></li>
                     <li><a href="">Add/Edit User</a></li>
                 </ol>
             </div>
         </div>
         <div id="main-wrapper">
+            <div class="alert alert-danger" role="alert" ng-show="errorMsg!=''">
+                <strong >{{errorMsg}}</strong>
+            </div>      
+            <div class="loader-container" ng-show="isLoading">
+                <div class="loader"></div>
+            </div>      
             <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-white">
@@ -19,41 +25,50 @@
                             <h4 class="panel-title">Add/Edit User</h4>
                         </div>
                         <div class="panel-body">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" name="myForm">
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Username</label>
+                                    <label class="col-sm-4 control-label">Username</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="inputEmail3" >
+                                        <input type="text" name="Username" class="form-control" ng-model="user.username" value="{{user.username}}" required>
+                                        <span class="text-danger" ng-show="myForm.Username.$error.required">Required!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Password</label>
+                                    <label class="col-sm-4 control-label">Password</label>
                                     <div class="col-sm-7">
-                                        <input type="password" class="form-control" id="inputEmail3" >
+                                        <input type="password" name="Password" id="Password" class="form-control" ng-model="user.password" value="{{user.password}}" required>
+                                        <span class="text-danger" ng-show="myForm.Password.$error.required">Required!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Confirm Password</label>
+                                    <label class="col-sm-4 control-label">Confirm Password</label>
                                     <div class="col-sm-7">
-                                        <input type="password" class="form-control" id="inputEmail3" >
+                                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" required pw-check="Password" ng-model="user.confirmpassword" value="{{user.confirmpassword}}">
+                                        <span class="text-danger" ng-show="myForm.ConfirmPassword.$error.required">Required!</span>
+                                        <span class="text-danger" ng-show="myForm.ConfirmPassword.$error.pwmatch">Password don't match!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Mobile</label>
+                                    <label class="col-sm-4 control-label">Mobile</label>
                                     <div class="col-sm-7">
-                                        <input type="number" class="form-control" id="inputEmail3" >
+                                        <input type="number" name="Mobile" class="form-control" ng-model="user.mobile" value="{{user.mobile}}" required ng-pattern="'\\d{0,1}\\d{11}'">
+                                        <span class="text-danger" ng-show="myForm.Mobile.$error.required">Required!</span>
+                                        <span class="text-danger" ng-show="!myForm.Mobile.$valid">Not valid mobile number!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
+                                    <label class="col-sm-4 control-label">Email</label>
                                     <div class="col-sm-7">
-                                        <input type="email" class="form-control" id="inputEmail3" >
+                                        <input type="email" name="Email" class="form-control" ng-model="user.email" value="{{user.email}}" required>
+                                        <span class="text-danger" ng-show="myForm.Email.$error.required">Required!</span>
+                                        <span class="text-danger" ng-show="myForm.Email.$error.email">Not valid email!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Department</label>
+                                    <label class="col-sm-4 control-label">Department</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="inputEmail3" >
+                                        <input type="text" name="Department" class="form-control" ng-model="user.department" value="{{user.department}}" required>
+                                        <span class="text-danger" ng-show="myForm.Department.$error.required">Required!</span>
                                     </div>
                                 </div>
                             </form>
@@ -70,19 +85,13 @@
                                 <div class="form-group">
                                     <div class="col-sm-offset-1 col-sm-10">
                                         <div>
-                                            <input id="checkbox1" type="checkbox" name="checkbox" value="1" checked="checked"><label for="checkbox1">Manage Profiles</label>
-                                        </div>
-                                        <div class="left-padding-30">
-                                            <input id="checkbox2" type="checkbox" name="checkbox" value="2"><label for="checkbox2">All</label>
-                                        </div>
-                                        <div class="left-padding-30" ng-repeat="(key, value) in [1,2,3,4,5]">
-                                            <input id="checkbox3" type="checkbox" name="checkbox" ><label >Groupt {{value}}</label>
+                                            <input type="checkbox" ng-model="permissions[0]" value="{{user.permissions[0]}}"><label>Manage Profiles</label>
                                         </div>
                                         <div>
-                                            <input id="checkbox4" type="checkbox" name="checkbox" value="4"><label for="checkbox4">User Management</label>
+                                            <input type="checkbox" ng-model="permissions[1]" value="{{user.permissions[1]}}"><label>User Management</label>
                                         </div>
                                         <div>
-                                            <input id="checkbox4" type="checkbox" name="checkbox" value="4"><label for="checkbox4">Search & Circulate</label>
+                                            <input type="checkbox" ng-model="permissions[2]" value="{{user.permissions[2]}}">Search & Circulate</label>
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +103,9 @@
             </div>
             <div class="row">
                 <div class="button-panel">
-                    <a href="#/app/users" class="btn btn-success" role="button">Save</a>
+                    <!-- <input type="button" class="btn btn-success" role="button" ng-click="create()" value="Save(try)"> -->
+                    <input type="button" class="btn btn-success" role="button" ng-click="create()" ng-disabled="myForm.$invalid" ng-show="{{id==null}}" value="Create">
+                    <input type="button" class="btn btn-success" role="button" ng-click="update()" ng-disabled="myForm.$invalid" ng-show="{{id!=null}}" value="Update">
                 </div>
             </div>
         </div>

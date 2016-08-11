@@ -10,7 +10,12 @@
             </div>
         </div>
         <div id="main-wrapper">
-            
+            <div class="alert alert-danger" role="alert" ng-show="errorMsg!=''">
+                <strong >{{errorMsg}}</strong>
+            </div>      
+            <div class="loader-container" ng-show="isLoading">
+                <div class="loader"></div>
+            </div>
             <div class="row">
                 <div class="col-md-offset-3 col-md-6">
                     <div class="panel panel-white">
@@ -18,59 +23,67 @@
                             <h4 class="panel-title">New/Update Client</h4>
                         </div>
                         <div class="panel-body">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" name="myForm">
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Customer/Company Name</label>
+                                    <label class="col-sm-4 control-label">Customer/Company Name</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="inputEmail3" >
+                                        <input type="text" class="form-control" name="Username" ng-model="user.username" value="{{user.username}}" required>
+                                        <span class="text-danger" ng-show="myForm.Username.$error.required">Required!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Primary Contact</label>
+                                    <label class="col-sm-4 control-label">Password</label>
                                     <div class="col-sm-7">
-                                        <input type="number" class="form-control" id="inputEmail3" >
+                                        <input type="password" name="Password" id="Password" class="form-control" ng-model="user.password" value="{{user.password}}" required>
+                                        <span class="text-danger" ng-show="myForm.Password.$error.required">Required!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Primary Contact No.</label>
+                                    <label class="col-sm-4 control-label">Confirm Password</label>
                                     <div class="col-sm-7">
-                                        <input type="email" class="form-control" id="inputEmail3" >
+                                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" required pw-check="Password" ng-model="user.confirmpassword" value="{{user.confirmpassword}}">
+                                        <span class="text-danger" ng-show="myForm.ConfirmPassword.$error.required">Required!</span>
+                                        <span class="text-danger" ng-show="myForm.ConfirmPassword.$error.pwmatch">Password don't match!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
+                                    <label class="col-sm-4 control-label">Primary Contact</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="inputEmail3" >
+                                        <input type="text" class="form-control" name="Pri_Contact" ng-model="user.pri_contact" value="{{user.pri_contact}}" required >
+                                        <span class="text-danger" ng-show="myForm.Pri_Contact.$error.required">Required!</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">Notes</label>
+                                    <label class="col-sm-4 control-label">Primary Contact No.</label>
                                     <div class="col-sm-7">
-                                        <textarea class="message-input" placeholder="Note here..."></textarea>
+                                        <input type="number" class="form-control" name="Pri_Contact_No" ng-model="user.pri_contact_no" value="{{user.pri_contact_no}}" required >
+                                        <span class="text-danger" ng-show="myForm.Pri_Contact_No.$error.required">Required!</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Email</label>
+                                    <div class="col-sm-7">
+                                        <input type="email" name="Email" class="form-control" ng-model="user.email" value="{{user.email}}" required>
+                                        <span class="text-danger" ng-show="myForm.Email.$error.required">Required!</span>
+                                        <span class="text-danger" ng-show="myForm.Email.$error.email">Not valid email!</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Notes</label>
+                                    <div class="col-sm-7">
+                                        <textarea class="message-input" placeholder="Note here..."  ng-model="user.note">{{user.note}}</textarea>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-md-6">
-                    <div class="panel panel-white">
-                        <div class="panel-heading clearfix">
-                            <h4 class="panel-title">Notes</h4>
-                        </div>
-                        <div class="panel-body">
-                            <form>
-                                <div class="form-group">
-                                    <textarea class="message-input" placeholder="Note here..."></textarea>
-                                </div>
-                            </form>
-                        </div>
-                    </div>  
-                </div> -->
             </div>
             <div class="row">
                 <div class="button-panel">
-                    <a href="#/app/enterprise" class="btn btn-success" role="button">Save</a>
+                    <!-- <input type="button" class="btn btn-success" role="button" ng-click="create()" value="Save(try)"> -->
+                    <input type="button" class="btn btn-success" role="button" ng-click="create()" ng-disabled="myForm.$invalid" ng-show="{{id==null}}" value="Create">
+                    <input type="button" class="btn btn-success" role="button" ng-click="update()" ng-disabled="myForm.$invalid" ng-show="{{id!=null}}" value="Update">
                 </div>
             </div>
         </div>
