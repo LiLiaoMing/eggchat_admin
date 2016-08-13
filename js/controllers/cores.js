@@ -111,4 +111,28 @@ scpApp.controller('CoresCtrl', function($scope, $location, $utils) {
 			// console.log(JSON.stringify(res));
         }); 
 	}
+
+	$scope.updateDisable = function(user) {
+		$scope.errorMsg = "";
+        $scope.isLoading = true;
+		
+		newuser = {};
+		newuser.id = user.id;
+		newuser.username = user.username;
+		newuser.disabled = user.disabled;
+
+		console.log(JSON.stringify(newuser));
+
+        $utils.userUpdate(newuser, function(res) {
+            if (res.data.status == 'fail') {
+                $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message); 
+                $scope.isLoading = false;
+            }
+            else
+            	$scope.isLoading = false;	
+        }, function(res) {
+            $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
+            $scope.isLoading = false;
+        }); 
+	}
 });

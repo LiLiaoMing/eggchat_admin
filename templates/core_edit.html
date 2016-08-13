@@ -55,7 +55,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">Mobile</label>
                                     <div class="col-sm-7">
-                                        <input type="number" name="Mobile" class="form-control" ng-model="user.mobile" value="{{user.mobile}}" required ng-pattern="'\\d{0,1}\\d{11}'">
+                                        <input type="text" name="Mobile" class="form-control" ng-model="user.mobile" value="{{user.mobile}}" required ng-pattern="'\\d{0,1}\\d{11}'">
                                         <span class="text-danger" ng-show="myForm.Mobile.$error.required">Required!</span>
                                         <span class="text-danger" ng-show="!myForm.Mobile.$valid">Not valid mobile number!</span>
                                     </div>
