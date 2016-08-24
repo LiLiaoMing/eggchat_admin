@@ -8,36 +8,42 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
 	$scope.id = null;
 
 	$scope.searchKeys = {
-		'level': 4,
-	}
+        'level': 4
+    }
+    if ($utils.user.level == 1 || $utils.user.level == 2)
+            $scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';
+        if ($utils.user.level == 3)
+            $scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
 
-	if ($utils.user.level == 1)
-		$scope.searchKeys.path = $utils.client.path + $utils.client.id + '.';
-	if ($utils.user.level == 2)
-		$scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
-	
-	$scope.search = function() {
-		$scope.errorMsg = "";
-		$scope.isLoading = true;
-		$utils.userSearch($scope.searchKeys, function(res) {
+    $scope.init = function() {
+        $scope.search();
+    }
+
+    $scope.search = function() {
+        $scope.errorMsg = "";
+        $scope.isLoading = true;
+
+        // $scope.searchKeys.offset = ($scope.searchKeys.pageNum - 1) * $scope.searchKeys.amount;
+        $utils.userSearch($scope.searchKeys, function(res) {
             if (res.data.status == 'fail') {
-            	$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message);	
-            	$scope.isLoading = false;
+                $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message); 
+                $scope.isLoading = false;
             }
             else
             {
-            	$scope.isLoading = false;
-            	$scope.data.users = res.data.data.result;
-            	$scope.data.count = res.data.data.count;
-            	$scope.data.totalPages = Math.ceil($scope.data.count / $scope.searchKeys.amount);
+                $scope.isLoading = false;
+                $scope.data.users = res.data.data.result;
+                $scope.data.count = res.data.data.count;
+                $scope.data.totalPages = Math.ceil($scope.data.count / $scope.searchKeys.amount);
+                
             }
             
         }, function(res) {
-			$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
-			$scope.isLoading = false;
-			// console.log(JSON.stringify(res));
+            $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
+            $scope.isLoading = false;
+            // console.log(JSON.stringify(res));
         }); 
-	}
+    }
 
 	$scope.search();
 
@@ -85,24 +91,24 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
     {
     	console.log('Normal Creating');
     }
-
-
-	$scope.init = function() {
-	}
-
     
 	$scope.create = function() {
 		$scope.errorMsg = "";
 		$scope.isLoading = true;
 
+        // console.log(JSON.stringify($scope.group));
         $utils.groupCreate($scope.group, function(res) {
-        	// console.log(JSON.stringify(res));
+        	
+            $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message); 
+            $scope.isLoading = false;
+            console.log(JSON.stringify(res));
+
             if (res.data.status == 'fail') {
             	$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message);	
             	$scope.isLoading = false;
             }
-            else
-            	$location.path('app/profiles');
+            // else
+            	// $location.path('app/groups');
         }, function(res) {
 			$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
 			$scope.isLoading = false;
@@ -122,7 +128,7 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
                 $scope.isLoading = false;
             }
             else
-                $location.path('app/profiles');
+                $location.path('app/groups');
         }, function(res) {
             $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
             $scope.isLoading = false;

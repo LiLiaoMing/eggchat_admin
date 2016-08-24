@@ -202,10 +202,10 @@ scpApp.factory('$utils', function($http, $location) {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					// 'token': localStorage.getItem('token')
+					'token': localStorage.getItem('token')
 				},
-				data: user,
-				url: server_base_url + 'user/',
+				data: group,
+				url: server_base_url + 'group/',
 				cache: false
 			}).then (
 				function successCallback(res) {
@@ -216,6 +216,31 @@ scpApp.factory('$utils', function($http, $location) {
 				}
 			);
 		},
+
+		/*----------------------------------------------------------------------------------------------
+		 * 				Group Search
+		 *----------------------------------------------------------------------------------------------*/
+		groupSearch: function (keys, success_callback, error_callback) {
+			
+			$http({
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'token': localStorage.getItem('token')
+				},
+				url: server_base_url + 'group',
+				params: keys,
+				cache: false
+			}).then (
+				function successCallback(res) {
+					success_callback(res);
+				},
+				function errorCallback(res) {
+					error_callback(res);
+				}
+			);
+		},
+
 	};
 
 	return public_members;

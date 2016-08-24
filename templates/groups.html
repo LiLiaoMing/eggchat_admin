@@ -22,6 +22,12 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-danger" role="alert" ng-show="errorMsg!=''">
+                <strong >{{errorMsg}}</strong>
+            </div>      
+            <div class="loader-container" ng-show="isLoading">
+                <div class="loader"></div>
+            </div>      
             <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-white">
@@ -37,29 +43,36 @@
                                                 <th class="sorting">Group Email</th>
                                                 <th class="sorting"># of Members</th>
                                                 <th class="sorting">GroupID</th>
-                                                <th class="sorting">Publie</th>
+                                                <th class="sorting">Public</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr role="row" class="odd" ng-repeat="(key, value) in [1,2,3,4,5]">
-                                                <td>{{value}}</td>
-                                                <td><input type="radio" name="gender" checked ></td>
-                                                <td>Gropu Name{{value}}</td>
-                                                <td>Group{{value}}@gmail.com</td>
-                                                <td>{{value}}{{value}}{{value}}{{value}}{{value}}</td>
-                                                <td>{{value}}</td>
-                                                <td>No</td>
+                                            <tr role="row" class="odd" ng-repeat="(key, group) in data.groups">
+                                                <td>{{searchKeys.offset + key + 1}}</td>
+                                                <td><input type="radio" name="selectedGroup" ng-model="selectedGroup" ng-value="group.id" ng-click="changeGroup(group)"></td>
+                                                <td>{{group.name}}</td>
+                                                <td>{{group.email}}</td>
+                                                <td></td>
+                                                <td>{{group.id}}</td>
+                                                <td>{{(group.public == 1) ? 'Yes' : 'No';}}</td>
+                                                <!-- <td><span><input type="checkbox" ng-click="updateDisable(user)" ng-model="user.disabled" ng-true-value="'1'" ng-false-value="'0'" ></span></td>
+                                                <td><a href="#/app/user-edit-update/{{user.id}}"><i class="glyphicon glyphicon-edit" style="font-size:16px"></i></a></td>
+                                                <td><a href="#/app/users" ><i class="glyphicon glyphicon-floppy-remove"  style="font-size:16px" confirmed-click="delete({{user.id}})" ng-confirm-click="Are you sure do you want to delete this user?"></i></a></td> -->
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
+                                        Total <span class="text-danger">{{data.count}}</span> entries, 
+                                        Total <span class="text-danger">{{data.totalPages}}</span> pages
+                                    </div>
                                     <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                                        <a class="paginate_button previous disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">Previous</a>
+                                        <a class="paginate_button previous disabled" ng-click="firstPage()"><<</a>
+                                        <a class="paginate_button previous disabled" ng-click="prevPage()"><</a>
                                         <span>
-                                            <a class="paginate_button current" aria-controls="example" data-dt-idx="1" tabindex="0">1</a>
-                                            <a class="paginate_button " aria-controls="example" data-dt-idx="2" tabindex="1" ng-repeat="(key, value) in [2,3,4,5]">{{value}}</a>
+                                            <input type="number" class="search-input page-search" ng-model="searchKeys.pageNum" ng-keypress="keyListener($event)">
                                         </span>
-                                        <a class="paginate_button next" aria-controls="example" data-dt-idx="7" tabindex="0" id="example_next">Next</a>
+                                        <a class="paginate_button next" ng-click="nextPage()">></a>
+                                        <a class="paginate_button next" ng-click="lastPage()">>></a>
                                     </div>
                                 </div>  
                             </div>
