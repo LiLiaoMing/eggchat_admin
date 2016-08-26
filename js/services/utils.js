@@ -47,8 +47,8 @@ scpApp.factory('$utils', function($http, $location) {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
-					'username': username,
-					'password': password
+					'Username': username,
+					'Password': password
 				},
 				url: server_base_url + 'user/login',
 				cache: false
@@ -109,7 +109,7 @@ scpApp.factory('$utils', function($http, $location) {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
-					'token': localStorage.getItem('token')
+					'Token': localStorage.getItem('token')
 				},
 				url: server_base_url + 'user/search',
 				params: keys,
@@ -130,7 +130,7 @@ scpApp.factory('$utils', function($http, $location) {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
-					'token': localStorage.getItem('token')
+					'Token': localStorage.getItem('token')
 				},
 				data: JSON.stringify(user),
 				url: server_base_url + 'user/',
@@ -154,7 +154,7 @@ scpApp.factory('$utils', function($http, $location) {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					// 'token': localStorage.getItem('token')
+					// 'Token': localStorage.getItem('token')
 				},
 				data: user,
 				url: server_base_url + 'user/',
@@ -179,7 +179,7 @@ scpApp.factory('$utils', function($http, $location) {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
-					'token': localStorage.getItem('token')
+					'Token': localStorage.getItem('token')
 				},
 				url: server_base_url + 'user/delete/?id=' + id,
 			}).then (
@@ -202,7 +202,7 @@ scpApp.factory('$utils', function($http, $location) {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'token': localStorage.getItem('token')
+					'Token': localStorage.getItem('token')
 				},
 				data: group,
 				url: server_base_url + 'group/',
@@ -226,7 +226,7 @@ scpApp.factory('$utils', function($http, $location) {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
-					'token': localStorage.getItem('token')
+					'Token': localStorage.getItem('token')
 				},
 				url: server_base_url + 'group',
 				params: keys,
