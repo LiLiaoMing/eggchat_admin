@@ -6,7 +6,13 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 	$scope.searchKeys = {
 		'offset': 0,
 		'pageNum': 1,
-		'amount': 2//$utils.amount_per_page
+		'amount': $utils.amount_per_page
+	}
+
+	$scope.searchKeys1 = {
+		'offset': 0,
+		'pageNum': 1,
+		'amount': $utils.amount_per_page
 	}
 	
 	$scope.init = function() {
@@ -171,6 +177,31 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 	}
 
 	$scope.changeGroup = function(selectedGroup) {
-		console.log(JSON.stringify(selectedGroup));
+
+		$scope.errorMsg = "";
+		$scope.isLoading = true;
+
+		$scope.searchKeys1.offset = ($scope.searchKeys1.pageNum - 1) * $scope.searchKeys1.amount;
+		$scope.searchKeys1.qb_id = selectedGroup.qb_id;
+
+		$utils.groupUsers($scope.searchKeys1, function(res) {
+            
+            if (res.data.status == 'fail') {
+            	$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message);	
+            	$scope.isLoading = false;
+            }
+            else
+            {
+            	$scope.isLoading = false;
+            	$scope.data.users = res.data.data.result;
+            	$scope.data.count1 = res.data.data.count;
+            	$scope.data.totalPages1 = Math.ceil($scope.data.count / $scope.searchKeys.amount);
+            }
+            
+        }, function(res) {
+			$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
+			$scope.isLoading = false;
+			// console.log(JSON.stringify(res));
+        }); 
 	}
 });

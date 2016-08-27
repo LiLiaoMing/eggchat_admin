@@ -14,11 +14,11 @@
             <div class="row">
                 <div class="panel panel-purple">
                     <div class="panel-body">
-                        <h3 class="panel-title">{{data.customer.username}}</h3><br/>
+                        <!-- <h3 class="panel-title">{{data.customer.username}}</h3><br/>
                         <h4 class="panel-title">Customer: {{data.customer.full_name}}</h4><br/>
                         <h4 class="panel-title">Profile: {{data.profile.username}}</h4><br/>
                         <h4 class="panel-title">{{data.customer.username}}, Tel: {{data.customer.mobile}}, {{data.customer.email}}</h4><br/>
-                        <h4 class="panel-title">Campaign Date: {{data.profile.start_date}} to {{data.profile.expiry_date}}</h4><br/>
+                        <h4 class="panel-title">Campaign Date: {{data.profile.start_date}} to {{data.profile.expiry_date}}</h4><br/> -->
                     </div>
                 </div>
             </div>
@@ -95,23 +95,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr role="row" class="odd" ng-repeat="(key, value) in [1,2,3,4,5]">
-                                                <td>{{value}}</td>
-                                                <td>Member Name{{value}}</td>
-                                                <td>{{value}}{{value}}{{value}}{{value}}{{value}}</td>
-                                                <td>user{{value}}@gmail.com</td>
-                                                <td>Active</td>
+                                            <tr role="row" class="odd" ng-repeat="(key, user) in data.users">
+                                                <td>{{searchKeys.offset + key + 1}}</td>
+                                                <td>{{user.username}}</td>
+                                                <td>{{user.mobile}}</td>
+                                                <td>{{user.email}}</td>
+                                                <td>{{(user.disabled == 1) ? 'Deactive' : 'Active';}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
+                                        Total <span class="text-danger">{{data.count1}}</span> entries, 
+                                        Total <span class="text-danger">{{data.totalPages1}}</span> pages
+                                    </div>
                                     <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                                        <a class="paginate_button previous disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">Previous</a>
+                                        <a class="paginate_button previous disabled" ng-click="firstPage()"><<</a>
+                                        <a class="paginate_button previous disabled" ng-click="prevPage()"><</a>
                                         <span>
-                                            <a class="paginate_button current" aria-controls="example" data-dt-idx="1" tabindex="0">1</a>
-                                            <a class="paginate_button " aria-controls="example" data-dt-idx="2" tabindex="1" ng-repeat="(key, value) in [2,3,4,5]">{{value}}</a>
+                                            <input type="number" class="search-input page-search" ng-model="searchKeys.pageNum" ng-keypress="keyListener($event)">
                                         </span>
-                                        <a class="paginate_button next" aria-controls="example" data-dt-idx="7" tabindex="0" id="example_next">Next</a>
+                                        <a class="paginate_button next" ng-click="nextPage()">></a>
+                                        <a class="paginate_button next" ng-click="lastPage()">>></a>
                                     </div>
                                 </div>  
                             </div>
