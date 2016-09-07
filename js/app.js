@@ -81,16 +81,16 @@ var scpApp = angular.module('scpApp', [
         controller: "CirculateCtrl",
         resolve: {
             login_check: userLoggedIn,
-            permission_check: function() {
-                if (localStorage.getItem('level') == "1")
-                {
-                    if (localStorage.getItem('permission')[1] == 'Y')
-                        return;
-                }
+            // permission_check: function() {
+            //     if (localStorage.getItem('level') == "1")
+            //     {
+            //         if (localStorage.getItem('permission')[1] == 'Y')
+            //             return;
+            //     }
 
-                window.location = '#/app/permission-problem';
-                // window.location.reload();
-            }
+            //     window.location = '#/app/permission-problem';
+            //     // window.location.reload();
+            // }
         }
     })
 

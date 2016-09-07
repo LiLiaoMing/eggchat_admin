@@ -141,14 +141,14 @@ scpApp.controller('ProfilesCtrl', function($scope, $location, $utils) {
 
 	}
 	$scope.gotoCirculate = function() {
-		if ($scope.data.profile === undefined)
-			alert('Please select profile first.');
-		else
-		{
-			localStorage.setItem('profile', JSON.stringify($scope.data.profile));
-			$utils.profile = $scope.data.profile;
+		// if ($scope.data.profile === undefined)
+		// 	alert('Please select profile first.');
+		// else
+		// {
+			// localStorage.setItem('profile', JSON.stringify($scope.data.profile));
+			// $utils.profile = $scope.data.profile;
 			$location.path('app/circulate');
-		}
+		// }
 
 	}
 

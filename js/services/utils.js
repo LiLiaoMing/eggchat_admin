@@ -30,6 +30,7 @@ scpApp.factory('$utils', function($http, $location) {
 		
 		client: JSON.parse(localStorage.getItem('client')),
 		profile: JSON.parse(localStorage.getItem('profile')),
+		group: JSON.parse(localStorage.getItem('group')),
 
 
 		/*----------------------------------------------------------------------------------------------
@@ -68,7 +69,10 @@ scpApp.factory('$utils', function($http, $location) {
 						localStorage.setItem('full_name', res.data.data.user.full_name);
 						localStorage.setItem('reply_email', res.data.data.user.reply_email);
 						localStorage.setItem('level', res.data.data.user.level);
-						localStorage.setItem('path', res.data.data.user.path);
+						if (res.data.data.user.path == null)
+							localStorage.setItem('path', '');
+						else
+							localStorage.setItem('path', res.data.data.user.path);
 						localStorage.setItem('permission', res.data.data.user.permission);
 
 						localStorage.setItem('token', res.data.data.token);
@@ -103,6 +107,10 @@ scpApp.factory('$utils', function($http, $location) {
 			);
 		},
 
+		
+		/*----------------------------------------------------------------------------------------------
+		 * 				User Search
+		 *----------------------------------------------------------------------------------------------*/		
 		userSearch: function (keys, success_callback, error_callback) {
 			
 			$http({
@@ -123,7 +131,10 @@ scpApp.factory('$utils', function($http, $location) {
 				}
 			);
 		},
-		
+
+		/*----------------------------------------------------------------------------------------------
+		 * 				User Update
+		 *----------------------------------------------------------------------------------------------*/
 		userUpdate: function (user, success_callback, error_callback) {
 			
 			$http({
@@ -270,7 +281,6 @@ scpApp.factory('$utils', function($http, $location) {
 		 *----------------------------------------------------------------------------------------------*/
 
 		groupCirculate: function (keys, success_callback, error_callback) {
-			
 			$http({
 				method: 'GET',
 				headers: {
@@ -279,6 +289,54 @@ scpApp.factory('$utils', function($http, $location) {
 				},
 				url: server_base_url + 'group/gcirculate',
 				params: keys,
+				cache: false
+			}).then (
+				function successCallback(res) {
+					success_callback(res);
+				},
+				function errorCallback(res) {
+					error_callback(res);
+				}
+			);
+		},
+
+		/*----------------------------------------------------------------------------------------------
+		 * 				Send Circulate
+		 *----------------------------------------------------------------------------------------------*/
+
+		userCirculate: function (keys, success_callback, error_callback) {
+			$http({
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'Token': localStorage.getItem('token')
+				},
+				url: server_base_url + 'group/circulate',
+				params: keys,
+				cache: false
+			}).then (
+				function successCallback(res) {
+					success_callback(res);
+				},
+				function errorCallback(res) {
+					error_callback(res);
+				}
+			);
+		},
+
+		/*----------------------------------------------------------------------------------------------
+		 * 				Group Update
+		 *----------------------------------------------------------------------------------------------*/
+		groupUpdate: function (group, success_callback, error_callback) {
+			
+			$http({
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'Token': localStorage.getItem('token')
+				},
+				data: JSON.stringify(group),
+				url: server_base_url + 'group/',
 				cache: false
 			}).then (
 				function successCallback(res) {

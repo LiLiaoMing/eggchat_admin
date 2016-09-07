@@ -8,12 +8,12 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 		'pageNum': 1,
 		'amount': $utils.amount_per_page
 	}
-
 	$scope.searchKeys1 = {
 		'offset': 0,
 		'pageNum': 1,
 		'amount': $utils.amount_per_page
 	}
+	$scope.selectedGroup = null;	
 	
 	$scope.init = function() {
 		$scope.search();
@@ -183,6 +183,7 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 
 		$scope.searchKeys1.offset = ($scope.searchKeys1.pageNum - 1) * $scope.searchKeys1.amount;
 		$scope.searchKeys1.qb_id = selectedGroup.qb_id;
+		$scope.selectedGroup = selectedGroup;
 
 		$utils.groupUsers($scope.searchKeys1, function(res) {
             
@@ -203,5 +204,16 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 			$scope.isLoading = false;
 			// console.log(JSON.stringify(res));
         }); 
+	}
+
+	$scope.gotoInvitation = function() {
+		if ($scope.selectedGroup === undefined || $scope.selectedGroup === null)
+			alert('Please select group first.');
+		else
+		{
+			localStorage.setItem('group', JSON.stringify($scope.selectedGroup));
+			$utils.group = $scope.selectedGroup;
+			$location.path('app/invite');
+		}
 	}
 });

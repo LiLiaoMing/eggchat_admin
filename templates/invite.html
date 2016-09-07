@@ -15,85 +15,102 @@
             <div class="row">
                 <div class="col-md-offset-3 col-md-6">
                     <div class="panel panel-white">
+                        <div class="alert alert-danger" role="alert" ng-show="errorMsg!=''">
+                            <strong >{{errorMsg}}</strong>
+                        </div>      
+                        <div class="loader-container" ng-show="isLoading">
+                            <div class="loader"></div>
+                        </div>      
                         <div class="panel-body">
                             <form class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-sm-offset-3 col-sm-6">
-                                        <div>
-                                            <input type="radio" name="searchkey"><label >Import from another group</label>
+                                        <div class="row">
+                                            <label><input type="radio" ng-model="data.category" value="group" /> Import from another group</label>
                                         </div>
-                                        <div class="left-padding-30">
+                                        <!-- <div class="left-padding-30">
                                             <div>
                                                 <select class="form-control m-b-sm">
                                                     <option ng-repeat="(key, value) in [1,2,3,4,5]">Group{{value}}</option>
                                                 </select>
                                             </div>
+                                        </div> -->
+                                        <div class="left-padding-30 row">
+                                            <div class="col-sm-12">
+                                                <select class="form-control m-b-sm" ng-model="data.selectedGroup" ng-options="group as group.name for group in data.groups">
+                                                </select>
+                                            </div>
+                                            <!-- <div class="col-sm-12">
+                                                <select class="form-control m-b-sm" ng-model="data.selectedGroup" name="GroupID">
+                                                    <option selected value=""><font style="color: #f00;">Select Group</font></option>
+                                                    <option ng-repeat="(key, group) in data.groups" value="{{group}}">{{group.name}}</option>
+                                                </select>
+                                            </div> -->
                                         </div>
-                                        <div>
-                                            <input type="radio" name="searchkey"><label >Invite Members</label>
+                                        <div class="row">
+                                            <label><input type="radio" ng-model="data.category" value="user" /> Invite Members</label>
+                                        </div>
+                                        <div class="table-responsive row left-padding-30">
+                                            <div id="example_wrapper" class="dataTables_wrapper">
+                                                <table id="example" class="display table dataTable" style="width: 100%;" role="grid" aria-describedby="example_info">
+                                                    <tbody>
+                                                        <tr role="row" class="odd"  ng-repeat="(key, user) in data.users">
+                                                            <td>{{searchKeys.offset + key + 1}}</td>
+                                                            <td><span>
+                                                                <input type="checkbox" ng-model="user.selected" ng-true-value="'1'" ng-false-value="'0'" >
+                                                            </span></td>
+                                                            <td>{{user.username}}</td>
+                                                            <!-- <td>{{user.email}}</td> -->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>  
                                         </div>
                                     </div>
-                                    <div class="col-sm-offset-4 col-sm-5">
 
+                                    <!-- <div class="col-sm-offset-4 col-sm-5">
                                         <div>
                                             <br>
                                             <b>Single Member</b>
                                             <br><br>
                                         </div>
-
                                         <div>
                                             <div class="col-sm-3">
-                                                <!--<div class="form-group"> -->
-                                                    <label for="exampleInputEmail1">Name</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                                <!-- </div> -->
+                                                <label for="exampleInputEmail1">Name</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                                             </div>
                                             <div class="col-sm-3">
-                                                <!--<div class="form-group"> -->
-                                                    <label for="exampleInputEmail1">Mobile</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                                <!-- </div> -->
+                                                <label for="exampleInputEmail1">Mobile</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                                             </div>
                                             <div class="col-sm-3">
-                                                <!--<div class="form-group"> -->
-                                                    <label for="exampleInputEmail1">Email</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                                <!-- </div> -->
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                                             </div>
                                             <div class="col-sm-3">
-                                                <!--<div class="form-group"> -->
-                                                    <label for="exampleInputEmail1">City</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                                    <br/>
-                                                    <a href="#/app/groups" class="btn btn-success" role="button">Invite</a>
-                                                    <br/><br/>
-                                                <!-- </div> -->
+                                                <label for="exampleInputEmail1">City</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                                <br/>
+                                                <a href="#/app/groups" class="btn btn-success" role="button">Invite</a>
+                                                <br/><br/>
                                             </div>
                                         </div>
-
                                         <div>
                                             <b>Browse</b>
                                         </div>
-                                        
                                         <div>
                                             <div class="col-sm-9">
-                                                <!--<div class="form-group"> -->
-                                                    <label for="exampleInputEmail1"></label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{filename}(xls/xlsx format)">
-                                                <!-- </div> -->
+                                                <label for="exampleInputEmail1"></label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{filename}(xls/xlsx format)">
                                             </div>
                                             <div class="col-sm-3">
-                                                <!--<div class="form-group"> -->
-                                                    <br/>
-                                                    <a href="#/app/groups" class="btn btn-success" role="button">Browser</a>
-                                                    <br/><br/>
-                                                    <a href="#/app/groups" class="btn btn-success" role="button">Import/Invite</a>
-                                                <!-- </div> -->
+                                                <br/>
+                                                <a href="#/app/groups" class="btn btn-success" role="button">Browser</a>
+                                                <br/><br/>
+                                                <a href="#/app/groups" class="btn btn-success" role="button">Import/Invite</a>
                                             </div>
-                                            
                                         </div>
-
-                                    </div>
+                                    </div> -->
                                 </div>
                             </form>
                         </div>
@@ -102,7 +119,7 @@
             </div>
             <div class="row">
                 <div class="button-panel">
-                    <a href="#/app/groups" class="btn btn-success" role="button">Submit</a>
+                <input type="button" class="btn btn-success" role="button" ng-click="add()" value="Submit/Add">
                 </div>
             </div>
         </div>

@@ -25,17 +25,20 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <input type="email" class="form-control" placeholder="Input serach key here...">
+                                    <input type="email" class="form-control" placeholder="Input serach key here..." ng-model="data.searchkey">
                                 </div>
                                 <label for="inputPassword3" class="col-sm-5 control-label">Search by</label>
                                 <div class="col-sm-3">
-                                    <select class="form-control m-b-sm">
-                                        <option ng-repeat="(key, value) in search_groups">{{value}}</option>
+                                    <select class="form-control m-b-sm" ng-model="data.category">
+                                        <option value="member">Member</option>
+                                        <option value="group">Group</option>
+                                        <option value="client">Client</option>
+                                        <option value="profile">Profile</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="align-right">
-                                <button type="submit" class="btn btn-success">Search</button>
+                                <button type="submit" class="btn btn-success" ng-click="doSearch()">Search</button>
                             </div>
                         </form>
                     </div>
@@ -62,9 +65,17 @@
                                         <tr role="row" class="odd"  ng-repeat="(key, group) in data.groups">
                                             <td>{{searchKeys.offset + key + 1}}</td>
                                             <td><span>
-                                                <input type="checkbox" ng-click="updateDisable(group.qb_id)" ng-model="group.selected" ng-true-value="'1'" ng-false-value="'0'" >
+                                                <input type="checkbox" ng-model="group.selected" ng-true-value="'1'" ng-false-value="'0'" >
                                             </span></td>
                                             <td>{{group.name}}</td>
+                                            <td>View</td>
+                                        </tr>
+                                        <tr role="row" class="odd"  ng-repeat="(key, user) in data.users">
+                                            <td>{{searchKeys.offset + key + 1}}</td>
+                                            <td><span>
+                                                <input type="checkbox" ng-model="user.selected" ng-true-value="'1'" ng-false-value="'0'" >
+                                            </span></td>
+                                            <td>{{user.username}}</td>
                                             <td>View</td>
                                         </tr>
                                     </tbody>
