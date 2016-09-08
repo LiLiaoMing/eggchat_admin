@@ -8,6 +8,9 @@ scpApp.controller('InviteCtrl', function($scope, $location, $utils) {
 	$scope.data.selectedGroup = null;
 	$scope.data.selectedUsers = {};
 
+	$scope.data.groups = [];
+	$scope.data.users = [];
+
 	// Group
 	$scope.searchKeys = {
 		'offset': 0,
@@ -62,7 +65,33 @@ scpApp.controller('InviteCtrl', function($scope, $location, $utils) {
             else
             {
                 $scope.isLoading = false;
-                $scope.data.users = res.data.data.result;
+                $scope.data.users = res.data.data.result.concat($scope.data.users);
+                // $scope.data.count = res.data.data.count;
+                // $scope.data.totalPages = Math.ceil($scope.data.count / $scope.searchKeys.amount);
+                
+            }
+            
+        }, function(res) {
+            $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
+            $scope.isLoading = false;
+            // console.log(JSON.stringify(res));
+        }); 
+
+        
+        searchKeys = {
+        	'level': 5,
+        	'offset': 0,
+        }
+
+        $utils.userSearch(searchKeys, function(res) {
+            if (res.data.status == 'fail') {
+                $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message); 
+                $scope.isLoading = false;
+            }
+            else
+            {
+                $scope.isLoading = false;
+               	$scope.data.users = res.data.data.result.concat($scope.data.users);
                 // $scope.data.count = res.data.data.count;
                 // $scope.data.totalPages = Math.ceil($scope.data.count / $scope.searchKeys.amount);
                 
