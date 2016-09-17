@@ -16,6 +16,7 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
         if ($utils.user.level == 3)
             $scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
 
+
     $scope.init = function() {
         $scope.search();
     }
@@ -24,6 +25,7 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
         $scope.errorMsg = "";
         $scope.isLoading = true;
 
+        console.log(JSON.stringify($scope.searchKeys));
         // $scope.searchKeys.offset = ($scope.searchKeys.pageNum - 1) * $scope.searchKeys.amount;
         $utils.userSearch($scope.searchKeys, function(res) {
             if (res.data.status == 'fail') {
