@@ -11,10 +11,10 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
         'level': 4
     }
     
-    if ($utils.user.level == 1 || $utils.user.level == 2)
-            $scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';
-        if ($utils.user.level == 3)
-            $scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
+    // if ($utils.user.level == 1 || $utils.user.level == 2)
+    //     $scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';
+    // if ($utils.user.level == 3)
+        $scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
 
 
     $scope.init = function() {
