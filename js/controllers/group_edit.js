@@ -106,8 +106,8 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
             	$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message);	
             	$scope.isLoading = false;
             }
-            // else
-            	// $location.path('app/groups');
+            else
+            	$location.path('app/groups');
         }, function(res) {
 			$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
 			$scope.isLoading = false;
