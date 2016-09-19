@@ -11,9 +11,9 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
         'level': 4
     }
     
-    // if ($utils.user.level == 1 || $utils.user.level == 2)
-    //     $scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';
-    // if ($utils.user.level == 3)
+    if ($utils.user.level == 1 || $utils.user.level == 2)
+        $scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';
+    if ($utils.user.level == 3)
         $scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
 
 
@@ -102,10 +102,6 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
         // console.log(JSON.stringify($scope.group));
         $utils.groupCreate($scope.group, function(res) {
         	
-            $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message); 
-            $scope.isLoading = false;
-            console.log(JSON.stringify(res));
-
             if (res.data.status == 'fail') {
             	$scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message);	
             	$scope.isLoading = false;
