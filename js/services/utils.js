@@ -348,6 +348,29 @@ scpApp.factory('$utils', function($http, $location) {
 			);
 		},
 
+		/*----------------------------------------------------------------------------------------------
+		 * 				Get Statistics
+		 *----------------------------------------------------------------------------------------------*/
+		getStats: function (success_callback, error_callback) {
+			
+			$http({
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'Token': localStorage.getItem('token')
+				},
+				url: server_base_url + 'user/statistics',
+				cache: false
+			}).then (
+				function successCallback(res) {
+					success_callback(res);
+				},
+				function errorCallback(res) {
+					error_callback(res);
+				}
+			);
+		},
+
 	};
 
 	return public_members;
