@@ -21,10 +21,7 @@ scpApp.controller('CoreCtrl', function($scope, $location, $utils) {
             else
             {
             	$scope.isLoading = false;
-            	console.log(JSON.stringify(res));
-            	// $scope.data.users = res.data.data.result;
-            	// $scope.data.count = res.data.data.count;
-            	// $scope.data.totalPages = Math.ceil($scope.data.count / $scope.searchKeys.amount);
+            	$scope.data.stats = res.data.data;
             }
             
         }, function(res) {
