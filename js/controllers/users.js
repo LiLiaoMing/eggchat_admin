@@ -124,7 +124,6 @@ scpApp.controller('UsersCtrl', function($scope, $location, $utils) {
 			$utils.profile = $scope.data.profile;
 			$location.path('app/groups');
 		}
-
 	}
 
 	$scope.gotoUsers = function() {
@@ -136,8 +135,8 @@ scpApp.controller('UsersCtrl', function($scope, $location, $utils) {
 			$utils.profile = $scope.data.profile;
 			$location.path('app/users');
 		}
-
 	}
+	
 	$scope.gotoCirculate = function() {
 		if ($scope.data.profile === undefined)
 			alert('Please select profile first.');
@@ -147,7 +146,6 @@ scpApp.controller('UsersCtrl', function($scope, $location, $utils) {
 			$utils.profile = $scope.data.profile;
 			$location.path('app/circulate');
 		}
-
 	}
 
 	$scope.updateDisable = function(user) {

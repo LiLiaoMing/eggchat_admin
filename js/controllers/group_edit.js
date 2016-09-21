@@ -11,6 +11,9 @@ scpApp.controller('GroupEditCtrl', function($scope, $location, $stateParams, $ut
         'level': 4
     }
     
+    $scope.data.customer = $utils.client;
+    $scope.data.profile = $utils.profile;
+    
     if ($utils.user.level == 1 || $utils.user.level == 2)
         $scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';
     if ($utils.user.level == 3)

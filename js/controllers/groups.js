@@ -13,7 +13,10 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 		'pageNum': 1,
 		'amount': $utils.amount_per_page
 	}
-	$scope.selectedGroup = null;	
+
+	$scope.data.customer = $utils.client;
+	$scope.data.profile = $utils.profile;
+	$scope.selectedGroup = null;
 	
 	$scope.init = function() {
 		$scope.search();
