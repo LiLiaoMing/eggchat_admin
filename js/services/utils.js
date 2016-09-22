@@ -1,7 +1,7 @@
 scpApp.factory('$utils', function($http, $location) {
 
-	var server_base_url =  'http://52.39.194.215/eggchat/api/';
-	// var server_base_url =  'http://192.168.1.50/projects/eggchat/api/';
+	// var server_base_url =  'http://52.39.194.215/eggchat/api/';
+	var server_base_url =  'http://192.168.1.50/projects/eggchat/api/';
 
 	public_members = {
 		server_base_url: server_base_url,

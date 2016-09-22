@@ -37,13 +37,13 @@
                                     <table id="example" class="display table dataTable" style="width: 100%;" role="grid" aria-describedby="example_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc">No.</th>
-                                                <th class="sorting_asc">Select</th>
-                                                <th class="sorting_asc">Group Name</th>
-                                                <th class="sorting">Group Email</th>
-                                                <th class="sorting"># of Members</th>
-                                                <th class="sorting">GroupID</th>
-                                                <th class="sorting">Public</th>
+                                                <th>No.</th>
+                                                <th>Select</th>
+                                                <th class="sorting" ng-click="sort_group_search('name')">Group Name</th>
+                                                <th class="sorting" ng-click="sort_group_search('email')">Group Email</th>
+                                                <th># of Members</th>
+                                                <th class="sorting" ng-click="sort_group_search('id')">GroupID</th>
+                                                <th class="sorting" ng-click="sort_group_search('public')">Public</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -87,11 +87,11 @@
                                     <table id="example" class="display table dataTable" style="width: 100%;" role="grid" aria-describedby="example_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc">No.</th>
-                                                <th class="sorting_asc">Member Name</th>
-                                                <th class="sorting">Mobile #</th>
-                                                <th class="sorting">Email</th>
-                                                <th class="sorting">Status</th>
+                                                <th>No.</th>
+                                                <th class="sorting" ng-click="sort_user_search('username')">Member Name</th>
+                                                <th class="sorting" ng-click="sort_user_search('mobile')">Mobile #</th>
+                                                <th class="sorting" ng-click="sort_user_search('email')">Email</th>
+                                                <th class="sorting" ng-click="sort_user_search('disabled')">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -109,13 +109,13 @@
                                         Total <span class="text-danger">{{data.totalPages1}}</span> pages
                                     </div>
                                     <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                                        <a class="paginate_button previous disabled" ng-click="firstPage()"><<</a>
-                                        <a class="paginate_button previous disabled" ng-click="prevPage()"><</a>
+                                        <a class="paginate_button previous disabled" ng-click="firstPage1()"><<</a>
+                                        <a class="paginate_button previous disabled" ng-click="prevPage1()"><</a>
                                         <span>
-                                            <input type="number" class="search-input page-search" ng-model="searchKeys.pageNum" ng-keypress="keyListener($event)">
+                                            <input type="number" class="search-input page-search" ng-model="searchKeys.pageNum" ng-keypress="keyListener1($event)">
                                         </span>
-                                        <a class="paginate_button next" ng-click="nextPage()">></a>
-                                        <a class="paginate_button next" ng-click="lastPage()">>></a>
+                                        <a class="paginate_button next" ng-click="nextPage1()">></a>
+                                        <a class="paginate_button next" ng-click="lastPage1()">>></a>
                                     </div>
                                 </div>  
                             </div>

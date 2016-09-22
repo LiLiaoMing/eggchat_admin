@@ -4,11 +4,15 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 	$scope.isLoading = false;
 	$scope.data = {};
 	$scope.searchKeys = {
+		'sort_field': 'name',
+		'sort_method': 'asc',
 		'offset': 0,
 		'pageNum': 1,
 		'amount': $utils.amount_per_page
 	}
 	$scope.searchKeys1 = {
+		'sort_field': 'username',
+		'sort_method': 'asc',
 		'offset': 0,
 		'pageNum': 1,
 		'amount': $utils.amount_per_page
@@ -185,7 +189,8 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 		$scope.isLoading = true;
 
 		$scope.searchKeys1.offset = ($scope.searchKeys1.pageNum - 1) * $scope.searchKeys1.amount;
-		$scope.searchKeys1.qb_id = selectedGroup.qb_id;
+		if (selectedGroup !== null)
+			$scope.searchKeys1.qb_id = selectedGroup.qb_id;
 		$scope.selectedGroup = selectedGroup;
 
 		$utils.groupUsers($scope.searchKeys1, function(res) {
@@ -199,7 +204,7 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
             	$scope.isLoading = false;
             	$scope.data.users = res.data.data.result;
             	$scope.data.count1 = res.data.data.count;
-            	$scope.data.totalPages1 = Math.ceil($scope.data.count / $scope.searchKeys.amount);
+            	$scope.data.totalPages1 = Math.ceil($scope.data.count1 / $scope.searchKeys1.amount);
             }
             
         }, function(res) {
@@ -217,6 +222,77 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 			localStorage.setItem('group', JSON.stringify($scope.selectedGroup));
 			$utils.group = $scope.selectedGroup;
 			$location.path('app/invite');
+		}
+	}
+
+	$scope.sort_group_search = function(field_name) {
+		$scope.searchKeys.sort_field = field_name;
+		if ($scope.searchKeys.sort_method == 'asc')
+			$scope.searchKeys.sort_method = 'desc';
+		else
+			$scope.searchKeys.sort_method = 'asc';
+		$scope.data = {};
+		$scope.search();
+	}
+
+	$scope.sort_user_search = function(field_name) {
+		$scope.searchKeys1.sort_field = field_name;
+		if ($scope.searchKeys1.sort_method == 'asc')
+			$scope.searchKeys1.sort_method = 'desc';
+		else
+			$scope.searchKeys1.sort_method = 'asc';
+		$scope.data.users = {};
+		$scope.changeGroup(null);
+	}
+
+	// For user page navigation
+	$scope.nextPage1 = function() {
+		if ($scope.searchKeys1.pageNum < $scope.data.totalPages1)
+		{
+			$scope.searchKeys1.pageNum++;
+			$scope.data.users = {};
+			$scope.changeGroup(null);
+		}
+	}
+
+	$scope.prevPage1 = function() {
+		if ($scope.searchKeys1.pageNum > 1)
+		{
+			$scope.searchKeys1.pageNum--;
+			$scope.data.users = {};
+			$scope.changeGroup(null);
+		}
+	}
+
+	$scope.lastPage1 = function() {
+		if ($scope.searchKeys1.pageNum < $scope.data.totalPages1)
+		{
+			$scope.searchKeys1.pageNum = $scope.data.totalPages1;
+			$scope.data.users = {};
+			$scope.changeGroup(null);
+		}
+	}
+
+	$scope.firstPage1 = function() {
+		if ($scope.searchKeys1.pageNum != 1)
+		{
+			$scope.searchKeys1.pageNum = 1;
+			$scope.data.users = {};
+			$scope.changeGroup(null);
+		}
+	}
+
+	$scope.keyListener1 = function(keyEvent) {
+		if (keyEvent.which === 13)
+		{
+			$scope.searchKeys1.pageNum = Math.floor($scope.searchKeys1.pageNum);
+			if (($scope.searchKeys1.pageNum > 0) && ($scope.searchKeys1.pageNum <= $scope.data.totalPages1))
+			{
+				$scope.data.users = {};
+				$scope.changeGroup(null);
+			}
+			else
+				alert("Wrong page number!");
 		}
 	}
 });
