@@ -16,7 +16,7 @@ scpApp.controller('LoginCtrl', function($scope, $utils, $location) {
 					if ($utils.user.level == "1")					// Core User
 						$location.path('app/core');
 					else if ($utils.user.level == "2")			// Client
-						$location.path('app/profiles');
+						$location.path('app/groups');
 					else if ($utils.user.level == "3")			// Client Profile
 						$location.path('app/profile-select');
 					else if ($utils.user.level == "4")			// Profile User
