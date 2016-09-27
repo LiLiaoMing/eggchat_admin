@@ -18,6 +18,11 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 		'amount': $utils.amount_per_page
 	}
 
+	if ($utils.user.level == 1 || $utils.user.level == 2)
+        $scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';
+    if ($utils.user.level == 3)
+        $scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
+    
 	$scope.data.customer = $utils.client;
 	$scope.data.profile = $utils.profile;
 	$scope.selectedGroup = null;
