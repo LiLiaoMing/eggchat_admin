@@ -8,7 +8,8 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
 		'sort_method': 'asc',
 		'offset': 0,
 		'pageNum': 1,
-		'amount': $utils.amount_per_page
+		'amount': $utils.amount_per_page,
+		'path':''
 	}
 	$scope.searchKeys1 = {
 		'sort_field': 'username',
@@ -22,7 +23,7 @@ scpApp.controller('GroupsCtrl',  function($scope, $location, $utils) {
         $scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';
     if ($utils.user.level == 3)
         $scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
-    
+
 	$scope.data.customer = $utils.client;
 	$scope.data.profile = $utils.profile;
 	$scope.selectedGroup = null;
