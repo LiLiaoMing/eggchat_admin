@@ -1,4 +1,4 @@
-scpApp.controller('CirculateCtrl', function($scope, $location, $utils) {
+scpApp.controller('CirculateCtrl', function($scope, $location, $utils, $stateParams) {
 	
 	$scope.errorMsg = "";
 	$scope.isLoading = false;
@@ -35,6 +35,10 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils) {
 
 	if (typeof $stateParams.from !== 'undefined')
     {
+    	if ($stateParams.from == 'core')
+    	{
+    		
+    	}
 		$scope.data.criteria = [
 			{ 
 				label: 'Member',
