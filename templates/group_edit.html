@@ -42,7 +42,7 @@
                                     <label for="inputPassword3" class="col-sm-4 control-label">Group Admin</label>
                                     <div class="col-sm-7">
                                         <select class="form-control m-b-sm" ng-model="group.owner_id" name="OwnerID" required>
-                                            <option selected value=""><font style="color: #f00;">Select Onwer ID</font></option>
+                                            <option selected value=""><font style="color: #f00;">Select Owner ID</font></option>
                                             <option ng-repeat="(key, user) in data.users" value="{{user.id}}">{{user.username}}</option>
                                         </select>
                                         <span class="text-danger" ng-show="myForm.OwnerID.$error.required">
