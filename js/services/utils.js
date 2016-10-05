@@ -252,6 +252,31 @@ scpApp.factory('$utils', function($http, $location) {
 		},
 
 		/*----------------------------------------------------------------------------------------------
+		 * 				All users of groups (Search)
+		 *----------------------------------------------------------------------------------------------*/
+		userGroupUserSearch: function (keys, success_callback, error_callback) {
+			
+			$http({
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'Token': localStorage.getItem('token')
+				},
+				url: server_base_url + 'group/allusers',
+				params: keys,
+				cache: false
+			}).then (
+				function successCallback(res) {
+					success_callback(res);
+				},
+				function errorCallback(res) {
+					error_callback(res);
+				}
+			);
+		},
+
+
+		/*----------------------------------------------------------------------------------------------
 		 * 				Group Users
 		 *----------------------------------------------------------------------------------------------*/
 		groupUsers: function (keys, success_callback, error_callback) {

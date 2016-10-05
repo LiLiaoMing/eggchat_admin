@@ -92,7 +92,7 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils, $statePar
 			$scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';			
 			if ($scope.data.category == 'member') 
 			{
-				$scope.searchUsers();
+				$scope.searchGroupUsers();
 			}
 			else
 			{
@@ -100,6 +100,31 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils, $statePar
 			}
 		}
 
+	}
+
+	$scope.searchGroupUsers = function() {
+		$scope.errorMsg = "";
+        $scope.isLoading = true;
+
+        $utils.userGroupUserSearch($scope.searchKeys, function(res) {
+            if (res.data.status == 'fail') {
+                $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message); 
+                $scope.isLoading = false;
+            }
+            else
+            {
+                $scope.isLoading = false;
+                $scope.data.users = res.data.data.result.concat($scope.data.users);
+                // $scope.data.count = res.data.data.count;
+                // $scope.data.totalPages = Math.ceil($scope.data.count / $scope.searchKeys.amount);
+                
+            }
+            
+        }, function(res) {
+            $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
+            $scope.isLoading = false;
+            // console.log(JSON.stringify(res));
+        }); 	
 	}
 	
 	$scope.searchUsers = function() {
@@ -127,33 +152,31 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils, $statePar
             // console.log(JSON.stringify(res));
         }); 
         
-        if ($scope.data.from == 'core')
-        {
-	        searchKeys = {
-	        	'level': 5,
-	        	'offset': 0,
-	        }
+    
+        searchKeys = {
+        	'level': 5,
+        	'offset': 0,
+        }
 
-	        $utils.userSearch(searchKeys, function(res) {
-	            if (res.data.status == 'fail') {
-	                $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message); 
-	                $scope.isLoading = false;
-	            }
-	            else
-	            {
-	                $scope.isLoading = false;
-	               	$scope.data.users = res.data.data.result.concat($scope.data.users);
-	                // $scope.data.count = res.data.data.count;
-	                // $scope.data.totalPages = Math.ceil($scope.data.count / $scope.searchKeys.amount);
-	                
-	            }
-	            
-	        }, function(res) {
-	            $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
-	            $scope.isLoading = false;
-	            // console.log(JSON.stringify(res));
-	        }); 
-	    }
+        $utils.userSearch(searchKeys, function(res) {
+            if (res.data.status == 'fail') {
+                $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res.data.message); 
+                $scope.isLoading = false;
+            }
+            else
+            {
+                $scope.isLoading = false;
+               	$scope.data.users = res.data.data.result.concat($scope.data.users);
+                // $scope.data.count = res.data.data.count;
+                // $scope.data.totalPages = Math.ceil($scope.data.count / $scope.searchKeys.amount);
+                
+            }
+            
+        }, function(res) {
+            $scope.errorMsg = 'Not succeeded! Error : ' + JSON.stringify(res);
+            $scope.isLoading = false;
+            // console.log(JSON.stringify(res));
+        }); 
 	}
 
 	$scope.searchGroup = function() {
