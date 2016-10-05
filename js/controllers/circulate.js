@@ -60,9 +60,10 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils, $statePar
 	$scope.doSearch = function() {
 		$scope.data.groups = [];
 		$scope.data.users = [];
-		debugger;
+
 		if ($scope.data.from == 'core')
 		{
+			debugger;
 			if ($utils.user.path == null) $utils.user.path = '';
 			$scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
 
@@ -89,6 +90,7 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils, $statePar
 		}
 		else
 		{
+			debugger;
 			$scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';			
 			if ($scope.data.category == 'member') 
 			{
