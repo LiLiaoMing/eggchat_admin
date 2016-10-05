@@ -90,7 +90,7 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils, $statePar
 		else
 		{
 			$scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';			
-			if ($scope.data.category = 'member') 
+			if ($scope.data.category == 'member') 
 			{
 				$scope.searchUsers();
 			}
