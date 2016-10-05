@@ -13,43 +13,44 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils, $statePar
 		'offset': 0,
 	}
 
-	$scope.data.criteria = [
-		{ 
-			label: 'Member',
-			value: 'member'
-		},
-		{ 
-			label: 'Group',
-			value: 'group'
-		},
-		{ 
-			label: 'Client',
-			value: 'client'
-		},
-		{ 
-			label: 'Profile',
-			value: 'profile'
-		}
-	];
-	$scope.data.from = 'core';
-
 	if (typeof $stateParams.from !== 'undefined')
     {
     	if ($stateParams.from == 'core')
     	{
-    		
+    		$scope.data.criteria = [
+				{ 
+					label: 'Member',
+					value: 'member'
+				},
+				{ 
+					label: 'Group',
+					value: 'group'
+				},
+				{ 
+					label: 'Client',
+					value: 'client'
+				},
+				{ 
+					label: 'Profile',
+					value: 'profile'
+				}
+			];
+			$scope.data.from = 'core';
     	}
-		$scope.data.criteria = [
-			{ 
-				label: 'Member',
-				value: 'member'
-			},
-			{ 
-				label: 'Group',
-				value: 'group'
-			}
-		];
-		$scope.data.from = 'profile';
+    	else
+    	{
+			$scope.data.criteria = [
+				{ 
+					label: 'Member',
+					value: 'member'
+				},
+				{ 
+					label: 'Group',
+					value: 'group'
+				}
+			];
+			$scope.data.from = 'profile';
+		}
     }
     
 	$scope.init = function() {
