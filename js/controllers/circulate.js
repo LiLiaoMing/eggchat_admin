@@ -61,28 +61,43 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils, $statePar
 		$scope.data.groups = [];
 		$scope.data.users = [];
 
-		if ($utils.user.path == null) $utils.user.path = '';
-		$scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
+		if ($scope.data.from == 'core')
+		{
+			if ($utils.user.path == null) $utils.user.path = '';
+			$scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
 
-		if ($scope.data.category == 'member')
-		{
-			// $scope.searchKeys.path = $utils.user.path;
-			$scope.searchKeys.level = 4;
-			$scope.searchUsers();
+			if ($scope.data.category == 'member')
+			{
+				// $scope.searchKeys.path = $utils.user.path;
+				$scope.searchKeys.level = 4;
+				$scope.searchUsers();
+			}
+			else if ($scope.data.category == 'group')
+				$scope.searchGroup();
+			else if ($scope.data.category == 'client')
+			{
+				// $scope.searchKeys.path = $utils.user.path;
+				$scope.searchKeys.level = 2;
+				$scope.searchUsers();
+			}
+			else if ($scope.data.category == 'profile')
+			{
+				// $scope.searchKeys.path = $utils.user.path;
+				$scope.searchKeys.level = 3;
+				$scope.searchUsers();
+			}
 		}
-		else if ($scope.data.category == 'group')
-			$scope.searchGroup();
-		else if ($scope.data.category == 'client')
+		else
 		{
-			// $scope.searchKeys.path = $utils.user.path;
-			$scope.searchKeys.level = 2;
-			$scope.searchUsers();
-		}
-		else if ($scope.data.category == 'profile')
-		{
-			// $scope.searchKeys.path = $utils.user.path;
-			$scope.searchKeys.level = 3;
-			$scope.searchUsers();
+			$scope.searchKeys.path = $utils.profile.path + $utils.profile.uid + '.';			
+			if ($scope.data.category = 'member') 
+			{
+				$scope.searchUsers();
+			}
+			else
+			{
+				$scope.searchGroup();
+			}
 		}
 
 	}
