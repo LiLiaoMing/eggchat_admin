@@ -9,20 +9,47 @@ scpApp.controller('CirculateCtrl', function($scope, $location, $utils) {
 
 	$scope.data.groups = [];
 	$scope.data.users = [];
-
-
 	$scope.searchKeys = {
 		'offset': 0,
 	}
 
-	// if ($utils.user.level == 1 || $utils.user.level == 2)
- //        $scope.searchKeys.path = $utils.profile.path + $utils.profile.id + '.';
- //    if ($utils.user.level == 3)
- //        $scope.searchKeys.path = $utils.user.path + $utils.user.uid + '.';
-	
+	$scope.data.criteria = [
+		{ 
+			label: 'Member',
+			value: 'member'
+		},
+		{ 
+			label: 'Group',
+			value: 'group'
+		},
+		{ 
+			label: 'Client',
+			value: 'client'
+		},
+		{ 
+			label: 'Profile',
+			value: 'profile'
+		}
+	];
+	$scope.data.from = 'core';
 
+	if (typeof $stateParams.from !== 'undefined')
+    {
+		$scope.data.criteria = [
+			{ 
+				label: 'Member',
+				value: 'member'
+			},
+			{ 
+				label: 'Group',
+				value: 'group'
+			}
+		];
+		$scope.data.from = 'profile';
+    }
+    
 	$scope.init = function() {
-		// $scope.search();
+		
 	}
 
 	$scope.doSearch = function() {

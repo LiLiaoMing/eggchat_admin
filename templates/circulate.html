@@ -30,10 +30,7 @@
                                 <label for="inputPassword3" class="col-sm-5 control-label">Search by</label>
                                 <div class="col-sm-3">
                                     <select class="form-control m-b-sm" ng-model="data.category">
-                                        <option value="member">Member</option>
-                                        <option value="group">Group</option>
-                                        <option value="client">Client</option>
-                                        <option value="profile">Profile</option>
+                                        <option ng-repeat="item in data.criteria" value="{{item.value}}">{{item.label}}</option>
                                     </select>
                                 </div>
                             </div>

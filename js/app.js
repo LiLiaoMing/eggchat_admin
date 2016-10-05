@@ -76,7 +76,7 @@ var scpApp = angular.module('scpApp', [
     })
 
     .state('main.circulate', {
-        url: "/circulate",
+        url: "/circulate/:from",
         templateUrl: "templates/circulate.html",
         controller: "CirculateCtrl",
         resolve: {
